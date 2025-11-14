@@ -74,40 +74,224 @@ $txt = [
   <meta name="description" content="<?php echo $txt[$lang]['subtitulo']; ?>">
   <title><?php echo $txt[$lang]['titulo']; ?> | Reciclaje</title>
   <style>
-    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background-color: #e1f5fe; color: #333; line-height: 1.6; }
-    header { position: relative; background: url('FONDOPLAS.jpg') no-repeat center center/cover; color: white; padding: 90px 10px; text-align: center; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.5); animation: fadeIn 1.5s ease-in-out; }
-    header::before { content: ""; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 60, 120, 0.5); z-index: 0; }
-    header h1 { margin: 0; font-size: 2.8em; background: linear-gradient(90deg, #aee1ff, #ffffff, #81d4fa, #e1f5fe); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-size: 300%; animation: shine 6s linear infinite; text-shadow: 2px 2px 8px rgba(0,0,0,0.6); position: relative; z-index: 1; }
-    header p { font-size: 1.2em; margin-top: 10px; color: #e3f2fd; text-shadow: 1px 1px 5px rgba(0,0,0,0.7); position: relative; z-index: 1; }
-    @keyframes shine { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
-    .language-selector { position: absolute; top: 15px; right: 15px; display: flex; flex-direction: column; align-items: center; font-size: 0.8em; color: white; z-index: 2; }
-    .flags { display: flex; gap: 5px; margin-top: 5px; }
-    .flag { height: 20px; cursor: pointer; border: 1px solid #fff; border-radius: 3px; }
-    nav { background-color: #1976d2; text-align: center; padding: 12px 0; }
-    nav a { color: white; text-decoration: none; padding: 10px 18px; display: inline-block; transition: 0.3s; }
-    nav a:hover { background-color: #64b5f6; border-radius: 5px; }
-    main { max-width: 1100px; margin: 30px auto; padding: 25px; background: #e3f2fd; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
-    section { margin-bottom: 50px; }
-    h2 { color: #1565c0; border-bottom: 2px solid #64b5f6; padding-bottom: 8px; }
-    p { text-align: justify; }
-    .imagenes, .videos { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-top: 20px; }
-    .imagenes img { width: 300px; height: 200px; object-fit: cover; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.3); }
-    .videos iframe { width: 100%; max-width: 500px; height: 280px; border-radius: 10px; }
-    .enlaces ul { list-style: none; padding-left: 0; }
-    .enlaces li { margin-bottom: 10px; }
-    .enlaces a { color: #1565c0; text-decoration: none; font-weight: bold; }
-    .enlaces a:hover { text-decoration: underline; }
-    footer { background-color: #1976d2; color: white; text-align: center; padding: 15px; margin-top: 40px; font-size: 0.9em; }
-  </style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #e1f5fe;
+    color: #333;
+    line-height: 1.6;
+  }
+
+  /* ----------------------------- */
+  /* HEADER */
+  /* ----------------------------- */
+  header {
+    position: relative;
+    background: url('FONDOPLAS.jpg') no-repeat center center/cover;
+    color: white;
+    padding: 90px 10px;
+    text-align: center;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    animation: fadeIn 1.5s ease-in-out;
+  }
+
+  header::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 60, 120, 0.5);
+    z-index: 0;
+  }
+
+  header h1 {
+    margin: 0;
+    font-size: 2.8em;
+    background: linear-gradient(90deg, #aee1ff, #ffffff, #81d4fa, #e1f5fe);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 300%;
+    animation: shine 6s linear infinite;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+    position: relative;
+    z-index: 1;
+  }
+
+  header p {
+    font-size: 1.2em;
+    margin-top: 10px;
+    color: #e3f2fd;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ----------------------------- */
+  /* ANIMACIONES */
+  /* ----------------------------- */
+  @keyframes shine {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ----------------------------- */
+  /* LANGUAGE SELECTOR */
+  /* ----------------------------- */
+  .language-selector {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.8em;
+    color: white;
+    z-index: 2;
+  }
+
+  .flags {
+    display: flex;
+    gap: 5px;
+    margin-top: 5px;
+  }
+
+  .flag {
+    height: 20px;
+    cursor: pointer;
+    border: 1px solid #fff;
+    border-radius: 3px;
+  }
+
+  /* ----------------------------- */
+  /* NAV MENÚ */
+  /* ----------------------------- */
+  nav {
+    background-color: #1976d2;
+    text-align: center;
+    padding: 12px 0;
+  }
+
+  nav a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 18px;
+    display: inline-block;
+    transition: 0.3s;
+  }
+
+  nav a:hover {
+    background-color: #64b5f6;
+    border-radius: 5px;
+  }
+
+  /* ----------------------------- */
+  /* MAIN */
+  /* ----------------------------- */
+  main {
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 25px;
+    background: #e3f2fd;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+
+  section {
+    margin-bottom: 50px;
+  }
+
+  h2 {
+    color: #1565c0;
+    border-bottom: 2px solid #64b5f6;
+    padding-bottom: 8px;
+  }
+
+  p {
+    text-align: justify;
+  }
+
+  .imagenes, .videos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+  }
+
+  .imagenes img {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  }
+
+  .videos iframe {
+    width: 100%;
+    max-width: 500px;
+    height: 280px;
+    border-radius: 10px;
+  }
+
+  /* ----------------------------- */
+  /* ENLACES */
+  /* ----------------------------- */
+  .enlaces ul {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .enlaces li {
+    margin-bottom: 10px;
+  }
+
+  .enlaces a {
+    color: #1565c0;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  .enlaces a:hover {
+    text-decoration: underline;
+  }
+
+  /* ----------------------------- */
+  /* FOOTER */
+  /* ----------------------------- */
+  footer {
+    background-color: #1976d2;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    margin-top: 40px;
+    font-size: 0.9em;
+  }
+          .logo-cecyte {
+      width: 90px;
+      height: auto;
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      z-index: 2;
+    }
+</style>
+
 </head>
 <body>
   <header>
+    <img src="../EcoLogo.png" alt="Logo CECYTE" class="logo-cecyte">
+
     <div class="language-selector">
       <p><?php echo $txt[$lang]['cambiar_idioma']; ?></p>
       <div class="flags">
-        <a href="?lang=es"><img src="mexicob.png" class="flag" alt="Español"></a>
-        <a href="?lang=en"><img src="USAb.png" class="flag" alt="English"></a>
+        <a href="?lang=es"><img src="../mexicob.png" class="flag" alt="Español"></a>
+        <a href="?lang=en"><img src="../USAb.png" class="flag" alt="English"></a>
       </div>
     </div>
     <h1><?php echo $txt[$lang]['titulo']; ?></h1>

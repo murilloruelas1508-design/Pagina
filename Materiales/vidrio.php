@@ -250,16 +250,27 @@ $txt = [
       margin-top: 40px;
       font-size: 0.9em;
     }
+        .logo-cecyte {
+      width: 90px;
+      height: auto;
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      z-index: 2;
+    }
+
   </style>
 </head>
 <body>
 
   <header>
+    <img src="../EcoLogo.png" alt="Logo CECYTE" class="logo-cecyte">
+
     <div class="language-selector">
       <p><?php echo $txt[$lang]['cambiar_idioma']; ?></p>
       <div class="flags">
-        <a href="?lang=es"><img src="mexicob.png" class="flag" alt="Español"></a>
-        <a href="?lang=en"><img src="USAb.png" class="flag" alt="English"></a>
+        <a href="?lang=es"><img src="../mexicob.png" class="flag" alt="Español"></a>
+        <a href="?lang=en"><img src="../USAb.png" class="flag" alt="English"></a>
       </div>
     </div>
 
