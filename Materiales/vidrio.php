@@ -1,18 +1,29 @@
 <?php
-// -----------------------------
-// Configuración de idioma
-// -----------------------------
-$lang = 'es'; // idioma por defecto
+session_start();
+
+// Cambiar idioma si se pasa por GET
 if (isset($_GET['lang'])) {
-    if ($_GET['lang'] === 'en') $lang = 'en';
-    if ($_GET['lang'] === 'es') $lang = 'es';
+    $_SESSION['lang'] = $_GET['lang'];
 }
+
+// Idioma por defecto
+$lang = $_SESSION['lang'] ?? 'es';
+
 
 // -----------------------------
 // Textos traducidos
 // -----------------------------
 $txt = [
     'es' => [
+        'menu_inicio'   => 'Inicio',
+        'menu_papel'    => 'Papel',
+        'menu_vidrio'   => 'Vidrio',
+        'menu_plastico' => 'Plástico',
+        'menu_carton'   => 'Cartón',
+        'menu_metal'    => 'Metal',
+        'menu_organico' => 'Orgánico',
+
+
         'titulo' => 'Todo sobre el Vidrio',
         'subtitulo' => 'Descubre su proceso de fabricación, reciclaje y su papel en el cuidado del medio ambiente.',
         'definicion_t' => '¿Qué es el Vidrio?',
@@ -30,6 +41,16 @@ $txt = [
         'footer' => '♻️ Proyecto Reciclaje © 2025 | Dándole nueva vida al vidrio'
     ],
     'en' => [
+        'menu_inicio'   => 'Back to Home',
+        'menu_papel'    => 'Paper',
+        'menu_vidrio'   => 'Glass',
+        'menu_plastico' => 'Plastic',
+        'menu_carton'   => 'Cardboard',
+        'menu_metal'    => 'Metal',
+        'menu_organico' => 'Organic',
+
+
+
         'titulo' => 'All About Glass',
         'subtitulo' => 'Learn about its production, recycling process, and role in protecting the environment.',
         'definicion_t' => 'What is Glass?',
@@ -245,15 +266,18 @@ $txt = [
     <h1><?php echo $txt[$lang]['titulo']; ?></h1>
     <p><?php echo $txt[$lang]['subtitulo']; ?></p>
   </header>
+  
+<nav>
+  <a href="../index.php"><?php echo $txt[$lang]['menu_inicio']; ?></a>
+  <a href="papel.php"><?php echo $txt[$lang]['menu_papel']; ?></a>
+  <a href="vidrio.php"><?php echo $txt[$lang]['menu_vidrio']; ?></a>
+  <a href="plastico.php"><?php echo $txt[$lang]['menu_plastico']; ?></a>
+  <a href="carton.php"><?php echo $txt[$lang]['menu_carton']; ?></a>
+  <a href="metal.php"><?php echo $txt[$lang]['menu_metal']; ?></a>
+  <a href="organico.php"><?php echo $txt[$lang]['menu_organico']; ?></a>
+</nav>
 
-  <nav>
-    <a href="index.php"><?php echo $txt[$lang]['volver']; ?></a>
-    <a href="papel.php">Papel</a>
-    <a href="plastico.php">Plástico</a>
-    <a href="metal.php">Metal</a>
-    <a href="carton.php">Cartón</a>
-    <a href="organico.php">Orgánico</a>
-  </nav>
+
 
   <main>
     <section id="definicion">

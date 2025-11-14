@@ -1,18 +1,29 @@
 <?php
-// -----------------------------
-// Configuración de idioma
-// -----------------------------
-$langs = ['es', 'en'];
-$lang = 'es'; // idioma por defecto
-if (isset($_GET['lang']) && in_array($_GET['lang'], $langs)) {
-    $lang = $_GET['lang'];
+session_start();
+
+// Cambiar idioma si se pasa por GET
+if (isset($_GET['lang'])) {
+    $_SESSION['lang'] = $_GET['lang'];
 }
+
+// Idioma por defecto
+$lang = $_SESSION['lang'] ?? 'es';
+
 
 // -----------------------------
 // Textos traducidos
 // -----------------------------
 $txt = [
     'es' => [
+        'menu_inicio'   => 'Inicio',
+        'menu_papel'    => 'Papel',
+        'menu_vidrio'   => 'Vidrio',
+        'menu_plastico' => 'Plástico',
+        'menu_carton'   => 'Cartón',
+        'menu_metal'    => 'Metal',
+        'menu_organico' => 'Orgánico',
+
+
         'titulo' => 'Todo sobre el Metal',
         'subtitulo' => 'Conoce el valor del metal, su proceso de reciclaje y cómo puedes ayudar a conservar los recursos naturales.',
         'definicion_t' => '¿Qué es el Metal?',
@@ -33,6 +44,14 @@ $txt = [
         'footer' => '♻️ Proyecto Reciclaje © 2025 | Forjando un futuro sostenible'
     ],
     'en' => [
+        'menu_inicio'   => 'Back to Home',
+        'menu_papel'    => 'Paper',
+        'menu_vidrio'   => 'Glass',
+        'menu_plastico' => 'Plastic',
+        'menu_carton'   => 'Cardboard',
+        'menu_metal'    => 'Metal',
+        'menu_organico' => 'Organic',
+
         'titulo' => 'All About Metal',
         'subtitulo' => 'Discover the value of metal, its recycling process, and how you can help preserve natural resources.',
         'definicion_t' => 'What is Metal?',
@@ -234,12 +253,13 @@ footer {
 </header>
 
 <nav>
-    <a href="index.php"><?= $txt[$lang]['volver'] ?></a>
-    <a href="plastico.php">Plástico</a>
-    <a href="papel.php">Papel</a>
-    <a href="vidrio.php">Vidrio</a>
-    <a href="carton.php">Cartón</a>
-    <a href="organico.php">Orgánico</a>
+  <a href="../index.php"><?php echo $txt[$lang]['menu_inicio']; ?></a>
+  <a href="papel.php"><?php echo $txt[$lang]['menu_papel']; ?></a>
+  <a href="vidrio.php"><?php echo $txt[$lang]['menu_vidrio']; ?></a>
+  <a href="plastico.php"><?php echo $txt[$lang]['menu_plastico']; ?></a>
+  <a href="carton.php"><?php echo $txt[$lang]['menu_carton']; ?></a>
+  <a href="metal.php"><?php echo $txt[$lang]['menu_metal']; ?></a>
+  <a href="organico.php"><?php echo $txt[$lang]['menu_organico']; ?></a>
 </nav>
 
 <main>

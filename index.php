@@ -165,12 +165,13 @@ $txt = [
         <li class="dropdown">
             <a href="#"><?php echo $txt[$lang]['menu']['materiales']; ?></a>
             <ul class="submenu">
-                <li><a href="plastico.php"><?php echo $txt[$lang]['menu']['plastico']; ?></a></li>
-                <li><a href="papel.php"><?php echo $txt[$lang]['menu']['papel']; ?></a></li>
-                <li><a href="vidrio.php"><?php echo $txt[$lang]['menu']['vidrio']; ?></a></li>
-                <li><a href="metal.php"><?php echo $txt[$lang]['menu']['metal']; ?></a></li>
-                <li><a href="carton.php"><?php echo $txt[$lang]['menu']['carton']; ?></a></li>
-                <li><a href="organico.php"><?php echo $txt[$lang]['menu']['organico']; ?></a></li>
+             <li><a href="Materiales/plastico.php"><?php echo $txt[$lang]['menu']['plastico']; ?></a></li>
+             <li><a href="Materiales/papel.php"><?php echo $txt[$lang]['menu']['papel']; ?></a></li>
+             <li><a href="Materiales/vidrio.php"><?php echo $txt[$lang]['menu']['vidrio']; ?></a></li>
+             <li><a href="Materiales/metal.php"><?php echo $txt[$lang]['menu']['metal']; ?></a></li>
+             <li><a href="Materiales/carton.php"><?php echo $txt[$lang]['menu']['carton']; ?></a></li>
+             <li><a href="Materiales/organico.php"><?php echo $txt[$lang]['menu']['organico']; ?></a></li>
+
             </ul>
         </li>
         <li><a href="actividades.php"><?php echo $txt[$lang]['menu']['actividades']; ?></a></li>

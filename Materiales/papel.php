@@ -1,18 +1,29 @@
 <?php
-// -----------------------------
-// Configuración de idioma
-// -----------------------------
-$lang = 'es';
+session_start();
+
+// Cambiar idioma si se pasa por GET
 if (isset($_GET['lang'])) {
-    if ($_GET['lang'] === 'en') $lang = 'en';
-    if ($_GET['lang'] === 'es') $lang = 'es';
+    $_SESSION['lang'] = $_GET['lang'];
 }
+
+// Idioma por defecto
+$lang = $_SESSION['lang'] ?? 'es';
+
 
 // -----------------------------
 // Textos traducidos
 // -----------------------------
 $txt = [
     'es' => [
+        'menu_inicio'   => 'Inicio',
+        'menu_papel'    => 'Papel',
+        'menu_vidrio'   => 'Vidrio',
+        'menu_plastico' => 'Plástico',
+        'menu_carton'   => 'Cartón',
+        'menu_metal'    => 'Metal',
+        'menu_organico' => 'Orgánico',
+
+
         'titulo' => 'Todo sobre el Papel',
         'subtitulo' => 'Descubre su origen, impacto ambiental y cómo reciclarlo de manera efectiva.',
         'definicion_t' => '¿Qué es el Papel?',
@@ -28,15 +39,16 @@ $txt = [
         'volver' => 'Volver al inicio',
         'cambiar_idioma' => 'Cambiar idioma',
         'footer' => '♻️ Proyecto Reciclaje © 2025 | Educando para un planeta más limpio',
-        // MENÚ
-        'menu_inicio' => 'Inicio',
-        'menu_plastico' => 'Plástico',
-        'menu_vidrio' => 'Vidrio',
-        'menu_metal' => 'Metal',
-        'menu_carton' => 'Cartón',
-        'menu_organico' => 'Orgánico'
     ],
     'en' => [
+        'menu_inicio'   => 'Back to Home',
+        'menu_papel'    => 'Paper',
+        'menu_vidrio'   => 'Glass',
+        'menu_plastico' => 'Plastic',
+        'menu_carton'   => 'Cardboard',
+        'menu_metal'    => 'Metal',
+        'menu_organico' => 'Organic',
+
         'titulo' => 'All About Paper',
         'subtitulo' => 'Discover its origin, environmental impact, and how to recycle it effectively.',
         'definicion_t' => 'What is Paper?',
@@ -52,13 +64,6 @@ $txt = [
         'volver' => 'Back to Home',
         'cambiar_idioma' => 'Change Language',
         'footer' => '♻️ Recycling Project © 2025 | Educating for a cleaner planet',
-        // MENÚ
-        'menu_inicio' => 'Home',
-        'menu_plastico' => 'Plastic',
-        'menu_vidrio' => 'Glass',
-        'menu_metal' => 'Metal',
-        'menu_carton' => 'Cardboard',
-        'menu_organico' => 'Organic'
     ]
 ];
 ?>
@@ -86,7 +91,7 @@ $txt = [
       position: relative;
       background: url('FONDOPAP.jpg') no-repeat center center/cover;
       color: white;
-      padding: 60px 10px;
+      padding: 90px 10px; 
       overflow: hidden;
       box-shadow: 0 2px 10px rgba(0,0,0,0.5);
       animation: fadeIn 1.5s ease-in-out;
@@ -121,7 +126,7 @@ $txt = [
 
     header h1 {
       margin: 0;
-      font-size: 2.6em;
+      font-size: 2.8em;
       background: linear-gradient(90deg, #ffe0b2, #ffffff, #ffcc80, #fff3e0);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -262,13 +267,13 @@ $txt = [
 
 <body>
   <header>
-    <img src="EcoLogo.png" alt="Logo CECYTE" class="logo-cecyte">
+    <img src="../EcoLogo.png" alt="Logo CECYTE" class="logo-cecyte">
 
     <div class="language-selector">
       <p><?php echo $txt[$lang]['cambiar_idioma']; ?></p>
       <div class="flags">
-        <a href="?lang=es"><img src="mexicob.png" class="flag" alt="Español"></a>
-        <a href="?lang=en"><img src="USAb.png" class="flag" alt="English"></a>
+        <a href="?lang=es"><img src="../mexicob.png" class="flag" alt="Español"></a>
+        <a href="?lang=en"><img src="../USAb.png" class="flag" alt="English"></a>
       </div>
     </div>
 
@@ -277,14 +282,15 @@ $txt = [
       <p><?php echo $txt[$lang]['subtitulo']; ?></p>
     </div>
   </header>
-  <nav>
-    <a href="index.php"><?php echo $txt[$lang]['menu_inicio']; ?></a>
-    <a href="plastico.php"><?php echo $txt[$lang]['menu_plastico']; ?></a>
-    <a href="vidrio.php"><?php echo $txt[$lang]['menu_vidrio']; ?></a>
-    <a href="metal.php"><?php echo $txt[$lang]['menu_metal']; ?></a>
-    <a href="carton.php"><?php echo $txt[$lang]['menu_carton']; ?></a>
-    <a href="organico.php"><?php echo $txt[$lang]['menu_organico']; ?></a>
-  </nav>
+<nav>
+  <a href="../index.php"><?php echo $txt[$lang]['menu_inicio']; ?></a>
+  <a href="papel.php"><?php echo $txt[$lang]['menu_papel']; ?></a>
+  <a href="vidrio.php"><?php echo $txt[$lang]['menu_vidrio']; ?></a>
+  <a href="plastico.php"><?php echo $txt[$lang]['menu_plastico']; ?></a>
+  <a href="carton.php"><?php echo $txt[$lang]['menu_carton']; ?></a>
+  <a href="metal.php"><?php echo $txt[$lang]['menu_metal']; ?></a>
+  <a href="organico.php"><?php echo $txt[$lang]['menu_organico']; ?></a>
+</nav>
 
   <main>
     <section id="definicion">

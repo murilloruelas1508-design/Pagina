@@ -1,22 +1,28 @@
 <?php
-// -----------------------------
-// Configuración de cabecera
-// -----------------------------
-header('Content-Type: text/html; charset=utf-8');
+session_start();
 
-// -----------------------------
-// Configuración de idioma
-// -----------------------------
-$lang = 'es';
-if (isset($_GET['lang']) && in_array($_GET['lang'], ['es', 'en'])) {
-    $lang = $_GET['lang'];
+// Cambiar idioma si se pasa por GET
+if (isset($_GET['lang'])) {
+    $_SESSION['lang'] = $_GET['lang'];
 }
+
+// Idioma por defecto
+$lang = $_SESSION['lang'] ?? 'es';
 
 // -----------------------------
 // Textos traducidos incluyendo menú
 // -----------------------------
 $txt = [
     'es' => [
+        'menu_inicio'   => 'Inicio',
+        'menu_papel'    => 'Papel',
+        'menu_vidrio'   => 'Vidrio',
+        'menu_plastico' => 'Plástico',
+        'menu_carton'   => 'Cartón',
+        'menu_metal'    => 'Metal',
+        'menu_organico' => 'Orgánico',
+
+
         'titulo' => 'Todo sobre el Plástico',
         'subtitulo' => 'Conoce su origen, su impacto ambiental y cómo puedes ayudar a reducir su uso.',
         'definicion_t' => '¿Qué es el Plástico?',
@@ -29,18 +35,19 @@ $txt = [
         'enlace1' => 'El plástico - National Geographic',
         'enlace2' => 'Cómo reciclar plástico - Ecología Verde',
         'enlace3' => 'ONU Medio Ambiente: El plástico, un material útil pero problemático',
-        'menu_inicio' => 'Inicio',
-        'menu_plastico' => 'Plástico',
-        'menu_papel' => 'Papel',
-        'menu_vidrio' => 'Vidrio',
-        'menu_metal' => 'Metal',
-        'menu_carton' => 'Cartón',
-        'menu_organico' => 'Orgánico',
         'cambiar_idioma' => 'Cambiar idioma',
         'volver' => 'Volver al inicio',
         'footer' => '♻️ Proyecto Reciclaje © 2025 | Educando para un planeta más limpio'
     ],
     'en' => [
+        'menu_inicio'   => 'Back to Home',
+        'menu_papel'    => 'Paper',
+        'menu_vidrio'   => 'Glass',
+        'menu_plastico' => 'Plastic',
+        'menu_carton'   => 'Cardboard',
+        'menu_metal'    => 'Metal',
+        'menu_organico' => 'Organic',
+        
         'titulo' => 'All About Plastic',
         'subtitulo' => 'Learn about its origin, environmental impact, and how you can help reduce its use.',
         'definicion_t' => 'What is Plastic?',
@@ -53,15 +60,7 @@ $txt = [
         'enlace1' => 'Plastic - National Geographic',
         'enlace2' => 'How to Recycle Plastic - Ecología Verde',
         'enlace3' => 'UN Environment: Plastic, a Useful but Problematic Material',
-        'menu_inicio' => 'Home',
-        'menu_plastico' => 'Plastic',
-        'menu_papel' => 'Paper',
-        'menu_vidrio' => 'Glass',
-        'menu_metal' => 'Metal',
-        'menu_carton' => 'Cardboard',
-        'menu_organico' => 'Organic',
         'cambiar_idioma' => 'Change Language',
-        'volver' => 'Back to Home',
         'footer' => '♻️ Recycling Project © 2025 | Educating for a cleaner planet'
     ]
 ];
@@ -115,14 +114,15 @@ $txt = [
     <p><?php echo $txt[$lang]['subtitulo']; ?></p>
   </header>
 
-  <nav>
-    <a href="index.php"><?php echo $txt[$lang]['menu_inicio']; ?></a>
-    <a href="papel.php"><?php echo $txt[$lang]['menu_papel']; ?></a>
-    <a href="vidrio.php"><?php echo $txt[$lang]['menu_vidrio']; ?></a>
-    <a href="metal.php"><?php echo $txt[$lang]['menu_metal']; ?></a>
-    <a href="carton.php"><?php echo $txt[$lang]['menu_carton']; ?></a>
-    <a href="organico.php"><?php echo $txt[$lang]['menu_organico']; ?></a>
-  </nav>
+<nav>
+  <a href="../index.php"><?php echo $txt[$lang]['menu_inicio']; ?></a>
+  <a href="papel.php"><?php echo $txt[$lang]['menu_papel']; ?></a>
+  <a href="vidrio.php"><?php echo $txt[$lang]['menu_vidrio']; ?></a>
+  <a href="plastico.php"><?php echo $txt[$lang]['menu_plastico']; ?></a>
+  <a href="carton.php"><?php echo $txt[$lang]['menu_carton']; ?></a>
+  <a href="metal.php"><?php echo $txt[$lang]['menu_metal']; ?></a>
+  <a href="organico.php"><?php echo $txt[$lang]['menu_organico']; ?></a>
+</nav>
 
   <main>
     <section id="definicion">
