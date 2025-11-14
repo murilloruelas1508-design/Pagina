@@ -1,0 +1,121 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #DDDFC4; 
+    color:#175c1b ; 
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color:  #677559;
+    padding: 10px 20px;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logotipo {
+    height: 50px;
+    width: auto;
+}
+.menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.menu ul li {
+    position: relative;
+    margin-right: 30px;
+}
+
+.menu ul li a {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+}
+
+.menu ul li a:hover {
+    text-decoration: underline;
+}
+
+/* === Submenú === */
+.submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #677559;
+    list-style: none;
+    padding: 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+}
+.dropdown:hover .submenu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.submenu li a {
+    display: block;
+    padding: 10px;
+}
+
+.dropdown:hover .submenu {
+    display: block;
+}
+
+.titulo {
+    font-size: 4em;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 0px;
+}
+
+.subtitulo {
+    font-size: 1.5em;
+    text-align: center;
+    color: #2c7236;
+    margin-bottom: 20px;
+    margin-top: 0.5px;
+}
+
+
+main {
+    padding: 20px;
+    text-align: center;
+}
+
+.imagen {
+    width: 400px;
+    border-radius: 35px;
+}
+
+
+footer {
+    text-align: center;
+    background-color: #677559;
+    color: rgb(16, 44, 19);
+    padding: 10px 0;
+}
+.idioma {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+}
