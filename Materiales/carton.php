@@ -269,7 +269,9 @@ footer {
 <body>
 
 <header>
-  <img src="../EcoLogo.png" alt="Logo CECYTE" class="logo-cecyte">
+     <a href="../index.php">
+    <img src="../ECOCYTE.png" class="logo-cecyte" alt="Logo CECYTE">
+    </a>
 
   <div class="language-selector">
     <p><?php echo $txt[$lang]['cambiar_idioma']; ?></p>

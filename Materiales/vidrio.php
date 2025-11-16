@@ -250,21 +250,24 @@ $txt = [
       margin-top: 40px;
       font-size: 0.9em;
     }
-        .logo-cecyte {
-      width: 90px;
-      height: auto;
-      position: absolute;
-      top: 15px;
-      left: 15px;
-      z-index: 2;
-    }
+     .logo-cecyte {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    z-index: 2;
+    width: 100px;
+    height: auto;
+}
 
   </style>
 </head>
 <body>
 
   <header>
-    <img src="../EcoLogo.png" alt="Logo CECYTE" class="logo-cecyte">
+    <a href="../index.php">
+    <img src="../ECOCYTE.png" class="logo-cecyte" alt="Logo CECYTE">
+    </a>
+
 
     <div class="language-selector">
       <p><?php echo $txt[$lang]['cambiar_idioma']; ?></p>

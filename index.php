@@ -9,211 +9,373 @@ $lang = $_SESSION['lang'] ?? 'es';
 
 $txt = [
     'es' => [
-        'titulo' => 'CLUB DE ECOLOGÍA',
-        'subtitulo' => 'CECyTE Hermosillo IV',
+        'titulo' => 'ECOCYTE – Ecología CECyTE',
+        'subtitulo' => 'Proyecto ecológico inter-planteles',
         'menu' => [
-            'inicio' => 'Inicio',
-            'nosotros' => 'Nosotros',
-            'materiales' => 'Todo sobre tus Materiales ▾',
-            'plastico' => 'Plástico',
-            'papel' => 'Papel',
-            'vidrio' => 'Vidrio',
-            'metal' => 'Metal',
-            'carton' => 'Cartón',
-            'organico' => 'Orgánico',
-            'actividades' => 'Actividades',
-            'manualidades' => 'Manualidades',
-            'conferencias' => 'Conferencias',
-            'registro' => 'Registro',
-            'mas' => 'Más ▾',
-            'galeria' => 'Galería',
-            'contacto' => 'Contacto'
+            'inicio' => 'Inicio','nosotros'=>'Nosotros','materiales'=>'Todo sobre tus Materiales ▾','cambiar_idioma'=>'Cambiar idioma',
+            'plastico'=>'Plástico','papel'=>'Papel','vidrio'=>'Vidrio','metal'=>'Metal','carton'=>'Cartón','organico'=>'Orgánico',
+            'actividades'=>'Actividades','manualidades'=>'Manualidades','conferencias'=>'Conferencias','registro'=>'Registro',
+            'mas'=>'Más ▾','galeria'=>'Galería','contacto'=>'Contacto'
         ],
-        'quienes' => '¿Quiénes somos?',
-        'quienes_texto' => 'Somos un grupo que promueve el cuidado del medio ambiente y la conciencia ecológica.',
-        'objetivos' => 'Objetivos',
-        'objetivos_texto' => 'Fomentar el reciclaje, la reforestación y el uso responsable de los recursos naturales.',
-        'actividades' => 'Actividades',
-        'actividades_texto' => 'Realizamos campañas de limpieza, talleres ecológicos y jornadas de plantación de árboles.',
-        'proyectos' => 'Proyectos',
-        'proyectos_texto' => 'Trabajamos en proyectos como huertos escolares, reciclaje de materiales y cuidado de áreas verdes.',
-        'video' => 'Video "QUÉ ES EL RECICLAJE Y SU IMPORTANCIA"',
-        'footer' => '© 2025 Club de Ecología'
+        'intro_titulo'=>'La Importancia del Reciclaje',
+        'intro_reciclaje'=>'Reutilizar materiales ayuda a reducir la contaminación, aprovechar mejor los recursos y disminuir los residuos que dañan el entorno. Con pequeñas acciones podemos generar un impacto positivo en el planeta.',
+        'quienes'=>'¿Quiénes somos?',
+        'quienes_texto'=>'Somos un grupo de estudiantes del plantel CECyTE Hermosillo IV comprometidos con el cuidado del medio ambiente. Promovemos conciencia ecológica mediante campañas y proyectos.',
+        'objetivos'=>'Objetivos',
+        'objetivos_texto'=>'• Fomentar una cultura ecológica.<br>• Reducir residuos.<br>• Promover reforestación.<br>• Implementar proyectos sostenibles.<br>• Involucrar estudiantes.',
+        'actividades'=>'Actividades',
+        'actividades_texto'=>'• Limpiezas.<br>• Talleres.<br>• Reforestación.<br>• Conferencias.<br>• Eventos especiales.',
+        'proyectos'=>'Proyectos',
+        'proyectos_texto'=>'',
+        'footer'=>'© 2025 ECOCYTE – Proyecto ecológico'
     ],
+
     'en' => [
-        'titulo' => 'ECOLOGY CLUB',
-        'subtitulo' => 'CECyTE Hermosillo IV',
-        'menu' => [
-            'inicio' => 'Home',
-            'nosotros' => 'About Us',
-            'materiales' => 'All About Your Materials ▾',
-            'plastico' => 'Plastic',
-            'papel' => 'Paper',
-            'vidrio' => 'Glass',
-            'metal' => 'Metal',
-            'carton' => 'Cardboard',
-            'organico' => 'Organic',
-            'actividades' => 'Activities',
-            'manualidades' => 'Crafts',
-            'conferencias' => 'Conferences',
-            'registro' => 'Register',
-            'mas' => 'More ▾',
-            'galeria' => 'Gallery',
-            'contacto' => 'Contact'
+        'titulo'=>'ECOCYTE – Ecology Project',
+        'subtitulo'=>'Inter-campus environmental project',
+        'menu'=>[
+            'inicio'=>'Home','nosotros'=>'About Us','materiales'=>'All About Your Materials ▾','cambiar_idioma'=>'Change language',
+            'plastico'=>'Plastic','papel'=>'Paper','vidrio'=>'Glass','metal'=>'Metal','carton'=>'Cardboard','organico'=>'Organic',
+            'actividades'=>'Activities','manualidades'=>'Crafts','conferencias'=>'Conferences','registro'=>'Register',
+            'mas'=>'More ▾','galeria'=>'Gallery','contacto'=>'Contact'
         ],
-        'quienes' => 'Who We Are',
-        'quienes_texto' => 'We are a group that promotes environmental care and ecological awareness.',
-        'objetivos' => 'Objectives',
-        'objetivos_texto' => 'Promote recycling, reforestation, and responsible use of natural resources.',
-        'actividades' => 'Activities',
-        'actividades_texto' => 'We carry out clean-up campaigns, ecological workshops, and tree planting events.',
-        'proyectos' => 'Projects',
-        'proyectos_texto' => 'We work on projects such as school gardens, material recycling, and green area maintenance.',
-        'video' => 'Video "WHAT IS RECYCLING AND ITS IMPORTANCE"',
-        'footer' => '© 2025 Ecology Club'
+        'intro_titulo'=>'The Importance of Recycling',
+        'intro_reciclaje'=>'Recycling reduces pollution and waste while improving resource use. Small actions make a positive impact.',
+        'quienes'=>'Who Are We?',
+        'quienes_texto'=>'We are students from CECyTE Plantel IV promoting environmental awareness through campaigns and activities.',
+        'objetivos'=>'Objectives',
+        'objetivos_texto'=>'• Promote ecological culture.<br>• Reduce waste.<br>• Reforestation.<br>• Sustainable projects.<br>• Student involvement.',
+        'actividades'=>'Activities',
+        'actividades_texto'=>'• Clean-ups.<br>• Workshops.<br>• Reforestations.<br>• Conferences.<br>• Ecological events.',
+        'proyectos'=>'Projects','proyectos_texto'=>'',
+        'footer'=>'© 2025 ECOCYTE – Ecology Project'
     ]
 ];
 ?>
+
 <!DOCTYPE html>
 <html lang="<?php echo $lang; ?>">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $txt[$lang]['titulo']; ?></title>
-    <link rel="stylesheet" type="text/css" href="index.css">
-    <style>
-        /* HEADER CON IMAGEN DE FONDO */
-        header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px 20px;
-            
-            /* Imagen de fondo */
-            background-image: url('FONDOECO.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            
-            position: relative; /* necesario para la capa */
-            color: #fff;
-        }
+    <link rel="stylesheet" href=".css">
 
-        /* Capa semi-transparente para mejorar legibilidad del texto */
-        header::after {
-            content: "";
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background-color: rgba(103, 117, 89, 0.6);
-            z-index: 0;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title><?php echo $txt[$lang]['titulo']; ?></title>
+<style>
+/* =========================
+   RESET Y ESTILOS BASE
+========================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        header > * {
-            position: relative; /* contenido sobre la capa */
-            z-index: 1;
-        }
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
+    color: #333;
+}
 
-        .logo-container img { height: 60px; }
-        .titulo-header {
-            flex: 1; text-align: center;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            font-size: 2em; font-weight: bold;
-            color: #fff;
-        }
-        .titulo-header span { font-size: 1em; color: #d7ccc8; }
-        .flag { height: 20px; vertical-align: middle; }
-        nav.menu { background-color: #A9B192; }
-        nav.menu ul { list-style: none; display: flex; margin: 0; padding: 0; }
-        nav.menu li { position: relative; }
-        nav.menu li a {
-            display: block; padding: 12px 16px;
-            color: white; text-decoration: none;
-        }
-        nav.menu li a:hover { background-color: #677559; }
-        nav.menu .submenu {
-            display: none; position: absolute;
-            background-color: #677559;
-            top: 100%; left: 0;
-            list-style: none; padding: 0; margin: 0;
-            min-width: 150px;
-        }
-        nav.menu li:hover .submenu { display: block; }
-        nav.menu .submenu li a { padding: 10px 16px; color: white; }
-        .language a { color: #fff; font-weight: bold; text-decoration: none; margin-left: 5px; }
-    </style>
+/* =========================
+   HEADER
+========================= */
+header {
+    position: relative;
+    height: 300px;
+    background: url('FONDOECO.jpg') center/cover no-repeat;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    /* Animación fadeIn para todo el header */
+    opacity: 0;               /* inicial invisible */
+    animation: fadeIn 1.5s ease forwards;
+}
+
+
+header::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(3px);
+}
+
+header h1 {
+    position: relative;
+    z-index: 2;
+    font-size: 2.8rem;
+    background: linear-gradient(90deg, #dcedc8, #ffffff, #a5d6a7, #e8f5e9);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 300%;
+    animation: shine 6s linear infinite, fadeIn 1.2s ease forwards;
+    text-shadow: 2px 2px 6px #000;
+}
+
+header span {
+    position: relative;
+    z-index: 2;
+    display: block;
+    margin-top: 5px;
+    color: #e0f2f1;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+}
+
+/* Logo y cambio de idioma */
+.logo {
+    position: absolute;
+    left: 15px;
+    top: 15px;
+    width: 90px;
+    z-index: 3;
+}
+
+.lang {
+    position: absolute;
+    right: 15px;
+    top: 30px; /* antes estaba 15px, ahora más abajo */
+    color: white;
+    z-index: 3;
+    font-size: 0.9rem; /* tamaño de letra más grande */
+    text-align: center;
+}
+
+
+.lang img {
+    width: 35px;
+    border: 1px solid #fff;
+    border-radius: 3px;
+    margin: 3px;
+    margin-top: 30px;
+}
+
+/* Animación del brillo */
+@keyframes shine {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+ }
+ @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+
+/* =========================
+   NAV
+========================= */
+nav {
+    background: #A9B192;
+    padding: 12px 0;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+nav li {
+    position: relative;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 18px;
+    display: block;
+}
+
+nav a:hover {
+    background: #677559;
+}
+
+/* Submenú */
+.submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #677559;
+    min-width: 150px;
+}
+
+li:hover .submenu {
+    display: block;
+}
+
+.submenu a {
+    padding: 10px;
+}
+
+/* =========================
+   MAIN
+========================= */
+main {
+    max-width: 1100px;
+    margin: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* Introducción con texto y video */
+.intro-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.intro-text {
+    flex: 1;
+    min-width: 280px;
+}
+
+.intro-video {
+    flex: 1;
+    min-width: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.intro-video video {
+    width: 100%;
+    border-radius: 10px;
+}
+
+/* Sección de información */
+.info-section {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* =========================
+   TITULOS Y PÁRRAFOS
+========================= */
+h2 {
+    margin-bottom: 10px;
+    border-left: 5px solid #A9B192;
+    padding-left: 8px;
+    color: #2e3b2f;
+}
+
+p {
+    margin-bottom: 12px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+footer {
+    text-align: center;
+    background: #A9B192;
+    color: white;
+    padding: 12px;
+    margin-top: 30px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+    .intro-section {
+        flex-direction: column;
+    }
+
+    .intro-video,
+    .intro-text {
+        width: 100%;
+    }
+}
+
+</style>
 </head>
 <body>
 <header>
-    <div class="logo-container">
-        <img src="EcoLogo.png" alt="Logo">
-    </div>
-    <div class="titulo-header">
-        <?php echo $txt[$lang]['titulo']; ?><br>
-        <span><?php echo $txt[$lang]['subtitulo']; ?></span>
-    </div>
-    <div class="language">
-        <a href="?lang=es"><img src="mexicob.png" class="flag" alt="Español"></a>
-        <a href="?lang=en"><img src="USAb.png" class="flag" alt="English"></a>
-    </div>
+<a href="../index.php">
+    <img src="../ECOCYTE.png" class="logo" alt="Logo CECYTE">
+ </a>
+<div class="lang">
+<?php echo $txt[$lang]['menu']['cambiar_idioma']; ?><br>
+<a href="?lang=es"><img src="../mexicob.png"></a>
+<a href="?lang=en"><img src="../USAb.png"></a>
+</div>
+<div>
+<h1><?php echo $txt[$lang]['titulo']; ?></h1>
+<span><?php echo $txt[$lang]['subtitulo']; ?></span>
+</div>
 </header>
 
-<nav class="menu">
-    <ul>
-        <li><a href="index.php"><?php echo $txt[$lang]['menu']['inicio']; ?></a></li>
-        <li><a href="nosotros.php"><?php echo $txt[$lang]['menu']['nosotros']; ?></a></li>
-        <li class="dropdown">
-            <a href="#"><?php echo $txt[$lang]['menu']['materiales']; ?></a>
-            <ul class="submenu">
-             <li><a href="Materiales/plastico.php"><?php echo $txt[$lang]['menu']['plastico']; ?></a></li>
-             <li><a href="Materiales/papel.php"><?php echo $txt[$lang]['menu']['papel']; ?></a></li>
-             <li><a href="Materiales/vidrio.php"><?php echo $txt[$lang]['menu']['vidrio']; ?></a></li>
-             <li><a href="Materiales/metal.php"><?php echo $txt[$lang]['menu']['metal']; ?></a></li>
-             <li><a href="Materiales/carton.php"><?php echo $txt[$lang]['menu']['carton']; ?></a></li>
-             <li><a href="Materiales/organico.php"><?php echo $txt[$lang]['menu']['organico']; ?></a></li>
 
-            </ul>
-        </li>
-        <li><a href="actividades.php"><?php echo $txt[$lang]['menu']['actividades']; ?></a></li>
-        <li><a href="#"><?php echo $txt[$lang]['menu']['manualidades']; ?></a></li>
-        <li><a href="#"><?php echo $txt[$lang]['menu']['conferencias']; ?></a></li>
-        <li><a href="Registro.php"><?php echo $txt[$lang]['menu']['registro']; ?></a></li>
-        <li class="dropdown">
-            <a href="#"><?php echo $txt[$lang]['menu']['mas']; ?></a>
-            <ul class="submenu">
-                <li><a href="#"><?php echo $txt[$lang]['menu']['galeria']; ?></a></li>
-                <li><a href="#"><?php echo $txt[$lang]['menu']['contacto']; ?></a></li>
-            </ul>
-        </li>
-    </ul>
+<nav>
+<ul>
+<li><a href="index.php"><?php echo $txt[$lang]['menu']['inicio']; ?></a></li>
+<li><a href="nosotros.php"><?php echo $txt[$lang]['menu']['nosotros']; ?></a></li>
+<li><a href="#"><?php echo $txt[$lang]['menu']['materiales']; ?></a>
+<ul class="submenu">
+<li><a href="Materiales/plastico.php"><?php echo $txt[$lang]['menu']['plastico']; ?></a></li>
+<li><a href="Materiales/papel.php"><?php echo $txt[$lang]['menu']['papel']; ?></a></li>
+<li><a href="Materiales/vidrio.php"><?php echo $txt[$lang]['menu']['vidrio']; ?></a></li>
+<li><a href="Materiales/metal.php"><?php echo $txt[$lang]['menu']['metal']; ?></a></li>
+<li><a href="Materiales/carton.php"><?php echo $txt[$lang]['menu']['carton']; ?></a></li>
+<li><a href="Materiales/organico.php"><?php echo $txt[$lang]['menu']['organico']; ?></a></li>
+</ul>
+</li>
+<li><a href="actividades.php"><?php echo $txt[$lang]['menu']['actividades']; ?></a></li>
+<li><a href="#"><?php echo $txt[$lang]['menu']['manualidades']; ?></a></li>
+<li><a href="#"><?php echo $txt[$lang]['menu']['conferencias']; ?></a></li>
+<li><a href="Registro.php"><?php echo $txt[$lang]['menu']['registro']; ?></a></li>
+<li><a href="#"><?php echo $txt[$lang]['menu']['mas']; ?></a></li>
+</ul>
 </nav>
 
+
 <main>
-    <section>
-        <img src="EcoFoto.jpg" alt="Último evento" class="imagen">
+<div class="intro-section">
+<div class="intro-text">
+<h2><?php echo $txt[$lang]['intro_titulo']; ?></h2>
+<p><?php echo $txt[$lang]['intro_reciclaje']; ?></p>
+</div>
+<div class="intro-video">
+<video controls>
+<source src="EcoVidio.mp4" type="video/mp4">
+</video>
+</div>
+</div>
 
-        <h2><?php echo $txt[$lang]['quienes']; ?></h2>
-        <p><?php echo $txt[$lang]['quienes_texto']; ?></p>
 
-        <h2><?php echo $txt[$lang]['objetivos']; ?></h2>
-        <p><?php echo $txt[$lang]['objetivos_texto']; ?></p>
+<div class="info-section">
+<h2><?php echo $txt[$lang]['quienes']; ?></h2>
+<p><?php echo $txt[$lang]['quienes_texto']; ?></p>
+<h2><?php echo $txt[$lang]['objetivos']; ?></h2>
+<p><?php echo $txt[$lang]['objetivos_texto']; ?></p>
+<h2><?php echo $txt[$lang]['actividades']; ?></h2>
+<p><?php echo $txt[$lang]['actividades_texto']; ?></p>
+<h2><?php echo $txt[$lang]['proyectos']; ?></h2>
+<p><?php echo $txt[$lang]['proyectos_texto']; ?></p>
+</div>
 
-        <h2><?php echo $txt[$lang]['actividades']; ?></h2>
-        <p><?php echo $txt[$lang]['actividades_texto']; ?></p>
 
-        <h2><?php echo $txt[$lang]['proyectos']; ?></h2>
-        <p><?php echo $txt[$lang]['proyectos_texto']; ?></p>
-
-        <h2><?php echo $txt[$lang]['video']; ?></h2>
-        <video width="700px" height="400px" controls>
-            <source src="EcoVidio.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-    </section>
 </main>
-
 <footer>
-    <p><?php echo $txt[$lang]['footer']; ?></p>
+<?php echo $txt[$lang]['footer']; ?>
 </footer>
 </body>
 </html>
