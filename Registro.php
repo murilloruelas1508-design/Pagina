@@ -1,15 +1,12 @@
 <?php
 session_start();
 
-// Cambiar idioma si se pasa por GET
 if (isset($_GET['lang'])) {
     $_SESSION['lang'] = $_GET['lang'];
 }
 
-// Idioma por defecto
 $lang = $_SESSION['lang'] ?? 'es';
 
-// Traducciones
 $txt = [
     'es' => [
         'titulo' => 'CLUB DE ECOLOGÍA',
@@ -17,7 +14,20 @@ $txt = [
         'menu' => [
             'inicio' => 'Inicio',
             'nosotros' => 'Nosotros',
-            'registro' => 'Registro'
+            'materiales' => 'Todo sobre tus Materiales ▾',
+            'plastico' => 'Plástico',
+            'papel' => 'Papel',
+            'vidrio' => 'Vidrio',
+            'metal' => 'Metal',
+            'carton' => 'Cartón',
+            'organico' => 'Orgánico',
+            'actividades' => 'Actividades',
+            'manualidades' => 'Manualidades',
+            'conferencias' => 'Conferencias',
+            'registro' => 'Registro',
+            'mas' => 'Más ▾',
+            'galeria' => 'Galería',
+            'contacto' => 'Contacto'
         ],
         'registro_titulo' => 'Formulario de Registro',
         'nombre' => 'Nombre completo',
@@ -26,6 +36,9 @@ $txt = [
         'tipo' => 'Tipo de participante',
         'alumno' => 'Alumno',
         'docente' => 'Docente',
+        'directivo' => 'Directivo',
+        'administrativo' => 'Administrativo',
+        'otros' => 'Otros',
         'plantel' => 'Plantel / Escuela',
         'semestre' => 'Semestre o Grado actual',
         'participacion' => '¿Has participado antes en actividades del club?',
@@ -39,7 +52,20 @@ $txt = [
         'menu' => [
             'inicio' => 'Home',
             'nosotros' => 'About Us',
-            'registro' => 'Register'
+            'materiales' => 'All About Your Materials ▾',
+            'plastico' => 'Plastic',
+            'papel' => 'Paper',
+            'vidrio' => 'Glass',
+            'metal' => 'Metal',
+            'carton' => 'Cardboard',
+            'organico' => 'Organic',
+            'actividades' => 'Activities',
+            'manualidades' => 'Crafts',
+            'conferencias' => 'Conferences',
+            'registro' => 'Register',
+            'mas' => 'More ▾',
+            'galeria' => 'Gallery',
+            'contacto' => 'Contact'
         ],
         'registro_titulo' => 'Registration Form',
         'nombre' => 'Full Name',
@@ -48,6 +74,9 @@ $txt = [
         'tipo' => 'Participant Type',
         'alumno' => 'Student',
         'docente' => 'Teacher',
+        'directivo' => 'Director',
+        'administrativo' => 'Administrative',
+        'otros' => 'Other',
         'plantel' => 'Campus / School',
         'semestre' => 'Current Semester / Grade',
         'participacion' => 'Have you participated in club activities before?',
@@ -60,120 +89,286 @@ $txt = [
 <!DOCTYPE html>
 <html lang="<?php echo $lang; ?>">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $txt[$lang]['menu']['registro']; ?></title>
-    <link rel="stylesheet" type="text/css" href="index.css">
-    <style>
-        header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px 20px;
-            background-color: #795548;
-        }
-        .logo-container img { height: 60px; }
-        .titulo-header {
-            flex: 1; text-align: center;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            font-size: 2em; font-weight: bold; color: #fff;
-        }
-        .titulo-header span { font-size: 1em; color: #d7ccc8; }
-        .flag { height: 20px; vertical-align: middle; }
-        nav.menu { background-color: #5d4037; }
-        nav.menu ul { list-style: none; display: flex; margin: 0; padding: 0; }
-        nav.menu li { position: relative; }
-        nav.menu li a {
-            display: block; padding: 12px 16px; color: white; text-decoration: none;
-        }
-        nav.menu li a:hover { background-color: #3e2723; }
-        .language a { color: #fff; font-weight: bold; text-decoration: none; margin-left: 5px; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title><?php echo $txt[$lang]['menu']['registro']; ?></title>
+<style>
+/* ===================== RESET Y BASE ===================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
+    color: #3e2723;
+}
 
-        main {
-            padding: 40px 80px; line-height: 1.7; background-color: #f7f3ef;
-        }
-        h2 { color: #4e342e; border-bottom: 2px solid #8d6e63; padding-bottom: 4px; }
-        form { margin-top: 30px; }
-        label { display: block; margin: 15px 0 5px; font-weight: bold; }
-        input, select, textarea {
-            width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;
-            font-family: Arial, sans-serif; font-size: 1em;
-        }
-        textarea { resize: vertical; height: 100px; }
-        button {
-            margin-top: 20px; padding: 12px 20px; background-color: #795548; color: white;
-            border: none; border-radius: 4px; cursor: pointer; font-size: 1em;
-        }
-        button:hover { background-color: #5d4037; }
-        footer {
-            background-color: #5d4037; color: white; text-align: center; padding: 15px;
-            margin-top: 40px;
-        }
-    </style>
+/* ===================== HEADER FIJO ===================== */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #A9B192;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 20px;
+    z-index: 1000;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+/* Logo con animación */
+.logo img {
+    height: 60px;
+    animation: shine 4s linear infinite;
+}
+
+/* ===================== MENÚ ===================== */
+nav.menu {
+    flex: 1;
+    text-align: center;
+}
+nav.menu ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    gap: 15px;
+}
+nav.menu li {
+    position: relative;
+}
+nav.menu li a {
+    display: block;
+    padding: 8px 12px;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+}
+nav.menu li a:hover {
+    background: #8d6e63;
+    border-radius: 4px;
+}
+
+/* Submenú */
+nav.menu .submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #A9B192;
+    min-width: 180px;
+}
+nav.menu li:hover .submenu {
+    display: block;
+}
+nav.menu .submenu li a {
+    padding: 8px 12px;
+}
+
+/* ===================== CAMBIO DE IDIOMA ===================== */
+.language {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: bold;
+    color: white;
+    font-size: 0.9rem;
+    gap: 5px;
+}
+.language span {
+    font-size: 0.85rem;
+}
+.language .flags {
+    display: flex;
+    gap: 5px;
+}
+.language .flag {
+    width: 30px;
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+/* ===================== ANIMACIONES ===================== */
+@keyframes shine {
+    0% { filter: brightness(1); }
+    50% { filter: brightness(1.5); }
+    100% { filter: brightness(1); }
+}
+
+/* ===================== MAIN ===================== */
+main {
+    max-width: 1100px;
+    margin: 120px auto 40px;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 12px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+main h2 {
+    margin-bottom: 10px;
+    color: #4e342e;
+    border-left: 5px solid #8d6e63;
+    padding-left: 8px;
+}
+label {
+    display: block;
+    margin: 15px 0 5px;
+    font-weight: bold;
+}
+input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+    font-family: Arial;
+}
+textarea {
+    resize: vertical;
+    height: 100px;
+}
+button {
+    margin-top: 20px;
+    padding: 12px 20px;
+    background-color: #8d6e63;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+button:hover {
+    background-color: #A1887F;
+}
+
+/* ===================== FOOTER ===================== */
+footer {
+    text-align: center;
+    background: #A9B192;
+    color: white;
+    padding: 12px;
+    margin-top: 30px;
+}
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 768px) {
+    nav.menu ul {
+        flex-direction: column;
+        gap: 0;
+    }
+    nav.menu li a {
+        padding: 10px;
+    }
+    .language {
+        flex-direction: row;
+        font-size: 0.8rem;
+        gap: 10px;
+    }
+    .language .flag {
+        width: 25px;
+    }
+}
+
+</style>
+
 </head>
 <body>
+
 <header>
-    <div class="logo-container">
-        <a href="index.php"><img src="EcoLogo.png" alt="Logo"></a>
+    <div class="logo">
+        <a href="index.php"><img src="../ECOCYTE.png" alt="Logo"></a>
     </div>
-    <div class="titulo-header">
-        <?php echo $txt[$lang]['titulo']; ?><br>
-        <span><?php echo $txt[$lang]['subtitulo']; ?></span>
-    </div>
+    <nav class="menu">
+       <ul>
+  <li><a href="index.php"><?php echo $txt[$lang]['menu']['inicio']; ?></a></li>
+  <li><a href="nosotros.php"><?php echo $txt[$lang]['menu']['nosotros']; ?></a></li>
+
+  <li>
+    <a href="#"><?php echo $txt[$lang]['menu']['materiales']; ?></a>
+    <ul class="submenu">
+      <li><a href="Materiales/plastico.php"><?php echo $txt[$lang]['menu']['plastico']; ?></a></li>
+      <li><a href="Materiales/papel.php"><?php echo $txt[$lang]['menu']['papel']; ?></a></li>
+      <li><a href="Materiales/vidrio.php"><?php echo $txt[$lang]['menu']['vidrio']; ?></a></li>
+      <li><a href="Materiales/metal.php"><?php echo $txt[$lang]['menu']['metal']; ?></a></li>
+      <li><a href="Materiales/carton.php"><?php echo $txt[$lang]['menu']['carton']; ?></a></li>
+      <li><a href="Materiales/organico.php"><?php echo $txt[$lang]['menu']['organico']; ?></a></li>
+    </ul>
+  </li>
+
+  <li><a href="actividades.php"><?php echo $txt[$lang]['menu']['actividades']; ?></a></li>
+  <li><a href="#"><?php echo $txt[$lang]['menu']['manualidades']; ?></a></li>
+  <li><a href="#"><?php echo $txt[$lang]['menu']['conferencias']; ?></a></li>
+  <li><a href="Registro.php"><?php echo $txt[$lang]['menu']['registro']; ?></a></li>
+
+  <li>
+    <a href="#"><?php echo $txt[$lang]['menu']['mas']; ?></a>
+    <ul class="submenu">
+      <li><a href="galeria.php"><?php echo $txt[$lang]['menu']['galeria']; ?></a></li>
+      <li><a href="contacto.php"><?php echo $txt[$lang]['menu']['contacto']; ?></a></li>
+    </ul>
+  </li>
+</ul>
+    </nav>
     <div class="language">
+    <span>Cambiar idioma:</span>
+    <div>
         <a href="?lang=es"><img src="mexicob.png" class="flag" alt="Español"></a>
         <a href="?lang=en"><img src="USAb.png" class="flag" alt="English"></a>
     </div>
+</div>
+
 </header>
 
-<nav class="menu">
-    <ul>
-        <li><a href="index.php"><?php echo $txt[$lang]['menu']['inicio']; ?></a></li>
-    </ul>
-</nav>
-
 <main>
-    <section>
-        <h2><?php echo $txt[$lang]['registro_titulo']; ?></h2>
-        <form action="registro_submit.php" method="POST">
-            <label for="nombre"><?php echo $txt[$lang]['nombre']; ?></label>
-            <input type="text" id="nombre" name="nombre" required>
+<h2><?php echo $txt[$lang]['registro_titulo']; ?></h2>
+<form action="registro_submit.php" method="POST">
+    <label for="nombre"><?php echo $txt[$lang]['nombre']; ?></label>
+    <input type="text" id="nombre" name="nombre" required>
 
-            <label for="correo"><?php echo $txt[$lang]['correo']; ?></label>
-            <input type="email" id="correo" name="correo" required>
+    <label for="correo"><?php echo $txt[$lang]['correo']; ?></label>
+    <input type="email" id="correo" name="correo" required>
 
-            <label for="telefono"><?php echo $txt[$lang]['telefono']; ?></label>
-            <input type="text" id="telefono" name="telefono">
+    <label for="telefono"><?php echo $txt[$lang]['telefono']; ?></label>
+    <input type="text" id="telefono" name="telefono">
 
-            <label for="tipo"><?php echo $txt[$lang]['tipo']; ?></label>
-            <select id="tipo" name="tipo">
-                <option value="alumno"><?php echo $txt[$lang]['alumno']; ?></option>
-                <option value="docente"><?php echo $txt[$lang]['docente']; ?></option>
-            </select>
+    <label for="tipo"><?php echo $txt[$lang]['tipo']; ?></label>
+    <select id="tipo" name="tipo">
+        <option value="alumno"><?php echo $txt[$lang]['alumno']; ?></option>
+        <option value="docente"><?php echo $txt[$lang]['docente']; ?></option>
+        <option value="directivo"><?php echo $txt[$lang]['directivo']; ?></option>
+        <option value="administrativo"><?php echo $txt[$lang]['administrativo']; ?></option>
+        <option value="otros"><?php echo $txt[$lang]['otros']; ?></option>
+    </select>
 
-            <label for="plantel"><?php echo $txt[$lang]['plantel']; ?></label>
-            <input type="text" id="plantel" name="plantel">
+    <label for="plantel"><?php echo $txt[$lang]['plantel']; ?></label>
+    <input type="text" id="plantel" name="plantel">
 
-            <label for="semestre"><?php echo $txt[$lang]['semestre']; ?></label>
-            <input type="text" id="semestre" name="semestre">
+    <label for="semestre"><?php echo $txt[$lang]['semestre']; ?></label>
+    <input type="text" id="semestre" name="semestre">
 
-            <label for="participacion"><?php echo $txt[$lang]['participacion']; ?></label>
-            <textarea id="participacion" name="participacion"></textarea>
+    <label for="participacion"><?php echo $txt[$lang]['participacion']; ?></label>
+    <textarea id="participacion" name="participacion"></textarea>
 
-            <label for="motivo"><?php echo $txt[$lang]['motivo']; ?></label>
-            <textarea id="motivo" name="motivo"></textarea>
+    <label for="motivo"><?php echo $txt[$lang]['motivo']; ?></label>
+    <textarea id="motivo" name="motivo"></textarea>
 
-            <label for="intereses"><?php echo $txt[$lang]['intereses']; ?></label>
-            <textarea id="intereses" name="intereses"></textarea>
+    <label for="intereses"><?php echo $txt[$lang]['intereses']; ?></label>
+    <textarea id="intereses" name="intereses"></textarea>
 
-            <button type="submit"><?php echo $txt[$lang]['enviar']; ?></button>
-        </form>
-    </section>
+    <button type="submit"><?php echo $txt[$lang]['enviar']; ?></button>
+</form>
 </main>
 
 <footer>
-    <p>© 2025 Club de Ecología - CECyTE Hermosillo IV</p>
+<p>© 2025 Club de Ecología - CECyTE Hermosillo IV</p>
 </footer>
+
 </body>
 </html>
-

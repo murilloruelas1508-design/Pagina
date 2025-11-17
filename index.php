@@ -9,7 +9,7 @@ $lang = $_SESSION['lang'] ?? 'es';
 
 $txt = [
     'es' => [
-        'titulo' => 'ECOCYTE – Ecología CECyTE',
+        'titulo' => 'ECOCYTES – Ecología CECyTES',
         'subtitulo' => 'Proyecto ecológico inter-planteles',
         'menu' => [
             'inicio' => 'Inicio','nosotros'=>'Nosotros','materiales'=>'Todo sobre tus Materiales ▾','cambiar_idioma'=>'Cambiar idioma',
@@ -31,7 +31,7 @@ $txt = [
     ],
 
     'en' => [
-        'titulo'=>'ECOCYTE – Ecology Project',
+        'titulo'=>'ECOCYTES – Ecology Project',
         'subtitulo'=>'Inter-campus environmental project',
         'menu'=>[
             'inicio'=>'Home','nosotros'=>'About Us','materiales'=>'All About Your Materials ▾','cambiar_idioma'=>'Change language',
@@ -132,6 +132,7 @@ header span {
     top: 15px;
     width: 90px;
     z-index: 3;
+    animation: shine 4s linear infinite; 
 }
 
 .lang {
@@ -166,6 +167,11 @@ header span {
     from { opacity: 0; transform: translateY(-20px); }
     to { opacity: 1; transform: translateY(0); }
 }
+@keyframes shine {
+  0% { filter: brightness(1); }
+  50% { filter: brightness(1.6); }
+  100% { filter: brightness(1); }
+}
 
 
 
@@ -196,7 +202,7 @@ nav a {
 }
 
 nav a:hover {
-    background: #677559;
+    background: white;
 }
 
 /* Submenú */
@@ -326,28 +332,49 @@ footer {
 
 <nav>
 <ul>
-<li><a href="index.php"><?php echo $txt[$lang]['menu']['inicio']; ?></a></li>
-<li><a href="nosotros.php"><?php echo $txt[$lang]['menu']['nosotros']; ?></a></li>
-<li><a href="#"><?php echo $txt[$lang]['menu']['materiales']; ?></a>
-<ul class="submenu">
-<li><a href="Materiales/plastico.php"><?php echo $txt[$lang]['menu']['plastico']; ?></a></li>
-<li><a href="Materiales/papel.php"><?php echo $txt[$lang]['menu']['papel']; ?></a></li>
-<li><a href="Materiales/vidrio.php"><?php echo $txt[$lang]['menu']['vidrio']; ?></a></li>
-<li><a href="Materiales/metal.php"><?php echo $txt[$lang]['menu']['metal']; ?></a></li>
-<li><a href="Materiales/carton.php"><?php echo $txt[$lang]['menu']['carton']; ?></a></li>
-<li><a href="Materiales/organico.php"><?php echo $txt[$lang]['menu']['organico']; ?></a></li>
-</ul>
-</li>
-<li><a href="actividades.php"><?php echo $txt[$lang]['menu']['actividades']; ?></a></li>
-<li><a href="#"><?php echo $txt[$lang]['menu']['manualidades']; ?></a></li>
-<li><a href="#"><?php echo $txt[$lang]['menu']['conferencias']; ?></a></li>
-<li><a href="Registro.php"><?php echo $txt[$lang]['menu']['registro']; ?></a></li>
-<li><a href="#"><?php echo $txt[$lang]['menu']['mas']; ?></a></li>
+  <li><a href="index.php"><?php echo $txt[$lang]['menu']['inicio']; ?></a></li>
+  <li><a href="nosotros.php"><?php echo $txt[$lang]['menu']['nosotros']; ?></a></li>
+
+  <li>
+    <a href="#"><?php echo $txt[$lang]['menu']['materiales']; ?></a>
+    <ul class="submenu">
+      <li><a href="Materiales/plastico.php"><?php echo $txt[$lang]['menu']['plastico']; ?></a></li>
+      <li><a href="Materiales/papel.php"><?php echo $txt[$lang]['menu']['papel']; ?></a></li>
+      <li><a href="Materiales/vidrio.php"><?php echo $txt[$lang]['menu']['vidrio']; ?></a></li>
+      <li><a href="Materiales/metal.php"><?php echo $txt[$lang]['menu']['metal']; ?></a></li>
+      <li><a href="Materiales/carton.php"><?php echo $txt[$lang]['menu']['carton']; ?></a></li>
+      <li><a href="Materiales/organico.php"><?php echo $txt[$lang]['menu']['organico']; ?></a></li>
+    </ul>
+  </li>
+
+  <li><a href="actividades.php"><?php echo $txt[$lang]['menu']['actividades']; ?></a></li>
+  <li><a href="#"><?php echo $txt[$lang]['menu']['manualidades']; ?></a></li>
+  <li><a href="#"><?php echo $txt[$lang]['menu']['conferencias']; ?></a></li>
+  <li><a href="Registro.php"><?php echo $txt[$lang]['menu']['registro']; ?></a></li>
+
+  <li>
+    <a href="#"><?php echo $txt[$lang]['menu']['mas']; ?></a>
+    <ul class="submenu">
+      <li><a href="galeria.php"><?php echo $txt[$lang]['menu']['galeria']; ?></a></li>
+      <li><a href="contacto.php"><?php echo $txt[$lang]['menu']['contacto']; ?></a></li>
+    </ul>
+  </li>
 </ul>
 </nav>
 
 
 <main>
+<div class="info-section">
+<h2><?php echo $txt[$lang]['quienes']; ?></h2>
+<p><?php echo $txt[$lang]['quienes_texto']; ?></p>
+<h2><?php echo $txt[$lang]['objetivos']; ?></h2>
+<p><?php echo $txt[$lang]['objetivos_texto']; ?></p>
+<h2><?php echo $txt[$lang]['actividades']; ?></h2>
+<p><?php echo $txt[$lang]['actividades_texto']; ?></p>
+<h2><?php echo $txt[$lang]['proyectos']; ?></h2>
+<p><?php echo $txt[$lang]['proyectos_texto']; ?></p>
+</div>
+
 <div class="intro-section">
 <div class="intro-text">
 <h2><?php echo $txt[$lang]['intro_titulo']; ?></h2>
@@ -358,18 +385,6 @@ footer {
 <source src="EcoVidio.mp4" type="video/mp4">
 </video>
 </div>
-</div>
-
-
-<div class="info-section">
-<h2><?php echo $txt[$lang]['quienes']; ?></h2>
-<p><?php echo $txt[$lang]['quienes_texto']; ?></p>
-<h2><?php echo $txt[$lang]['objetivos']; ?></h2>
-<p><?php echo $txt[$lang]['objetivos_texto']; ?></p>
-<h2><?php echo $txt[$lang]['actividades']; ?></h2>
-<p><?php echo $txt[$lang]['actividades_texto']; ?></p>
-<h2><?php echo $txt[$lang]['proyectos']; ?></h2>
-<p><?php echo $txt[$lang]['proyectos_texto']; ?></p>
 </div>
 
 
