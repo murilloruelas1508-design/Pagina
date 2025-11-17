@@ -28,7 +28,8 @@ $txt = [
             'registro' => 'Registro',
             'mas' => 'Más ▾',
             'galeria' => 'Galería',
-            'contacto' => 'Contacto'
+            'contacto' => 'Contacto',
+            'perfil'=>'Perfil'
         ],
         'nosotros_titulo' => 'Sobre Nosotros',
         'nosotros_texto' => 'Somos un grupo de estudiantes de CECyTE comprometidos con la preservación del medio ambiente. Promovemos conciencia ecológica mediante acciones, proyectos y campañas sostenibles.',
@@ -69,7 +70,8 @@ $txt = [
             'registro' => 'Register',
             'mas' => 'More ▾',
             'galeria' => 'Gallery',
-            'contacto' => 'Contact'
+            'contacto' => 'Contact',
+            'perfil'=>'Perfil'
         ],
         'nosotros_titulo' => 'About Us',
         'nosotros_texto' => 'We are a group of CECyTE students committed to preserving the environment. We promote ecological awareness through actions, projects, and sustainable campaigns.',
@@ -111,7 +113,7 @@ $txt = [
 body {
     font-family: Arial, sans-serif;
     background: #f5f5f5;
-    color: #3e2723;
+    color: #362624ff;
 }
 
 /* ===================== HEADER FIJO ===================== */
@@ -158,7 +160,7 @@ nav.menu li a {
     transition: 0.3s;
 }
 nav.menu li a:hover {
-    background: #8d6e63;
+    background: #A9B192;
     border-radius: 4px;
 }
 
@@ -168,7 +170,7 @@ nav.menu .submenu {
     position: absolute;
     top: 100%;
     left: 0;
-    background: #A9B192;
+    background: #677559;
     min-width: 180px;
 }
 nav.menu li:hover .submenu {
@@ -322,6 +324,7 @@ footer {
     <ul class="submenu">
       <li><a href="galeria.php"><?php echo $txt[$lang]['menu']['galeria']; ?></a></li>
       <li><a href="contacto.php"><?php echo $txt[$lang]['menu']['contacto']; ?></a></li>
+      <li><a href="perfil.php"><?php echo $txt[$lang]['menu']['perfil']; ?></a></li>
     </ul>
   </li>
 </ul>

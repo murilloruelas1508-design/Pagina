@@ -27,7 +27,8 @@ $txt = [
             'registro' => 'Registro',
             'mas' => 'Más ▾',
             'galeria' => 'Galería',
-            'contacto' => 'Contacto'
+            'contacto' => 'Contacto',
+            'perfil'=>'Perfil'
         ],
         'actividades_titulo' => 'Nuestras Actividades',
         'introduccion' => 'El proyecto organiza diversas actividades que promueven el cuidado del medio ambiente y la participación activa de los estudiantes.',
@@ -63,7 +64,8 @@ $txt = [
             'registro' => 'Register',
             'mas' => 'More ▾',
             'galeria' => 'Gallery',
-            'contacto' => 'Contact'
+            'contacto' => 'Contact',
+            'perfil'=>'Perfil'
         ],
         'actividades_titulo' => 'Our Activities',
         'introduccion' => 'The project organizes various activities that promote environmental care and active student participation.',
@@ -308,6 +310,7 @@ function participar() { alert("¡Perfecto, estás dentro!"); }
             <ul class="submenu">
               <li><a href="galeria.php"><?php echo $txt[$lang]['menu']['galeria']; ?></a></li>
               <li><a href="contacto.php"><?php echo $txt[$lang]['menu']['contacto']; ?></a></li>
+              <li><a href="perfil.php"><?php echo $txt[$lang]['menu']['perfil']; ?></a></li>
             </ul>
           </li>
         </ul>

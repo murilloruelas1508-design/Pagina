@@ -27,11 +27,13 @@ $txt = [
             'registro' => 'Registro',
             'mas' => 'Más ▾',
             'galeria' => 'Galería',
-            'contacto' => 'Contacto'
+            'contacto' => 'Contacto',
+            'perfil'=>'Perfil'
         ],
         'registro_titulo' => 'Formulario de Registro',
         'nombre' => 'Nombre completo',
         'correo' => 'Correo electrónico',
+        'contraseña' => 'Contraseña',
         'telefono' => 'Teléfono',
         'tipo' => 'Tipo de participante',
         'alumno' => 'Alumno',
@@ -44,7 +46,9 @@ $txt = [
         'participacion' => '¿Has participado antes en actividades del club?',
         'motivo' => 'Motivación para unirte al club',
         'intereses' => 'Áreas de interés ecológico',
-        'enviar' => 'Enviar Registro'
+        'enviar' => 'Enviar Registro',
+        'cuenta' => '¿Ya tienes cuenta?',
+        'iniciar' => 'Iniciar sesion'
     ],
     'en' => [
         'titulo' => 'ECOLOGY CLUB',
@@ -65,11 +69,13 @@ $txt = [
             'registro' => 'Register',
             'mas' => 'More ▾',
             'galeria' => 'Gallery',
-            'contacto' => 'Contact'
+            'contacto' => 'Contact',
+            'perfil'=>'Perfil'
         ],
         'registro_titulo' => 'Registration Form',
         'nombre' => 'Full Name',
         'correo' => 'Email',
+        'contraseña' => 'Password',
         'telefono' => 'Phone',
         'tipo' => 'Participant Type',
         'alumno' => 'Student',
@@ -82,7 +88,9 @@ $txt = [
         'participacion' => 'Have you participated in club activities before?',
         'motivo' => 'Motivation to join the club',
         'intereses' => 'Ecological areas of interest',
-        'enviar' => 'Submit Registration'
+        'enviar' => 'Submit Registration',
+        'cuenta' => 'Do you already have an account?',
+        'iniciar' => 'Login'
     ]
 ];
 ?>
@@ -312,6 +320,7 @@ footer {
     <ul class="submenu">
       <li><a href="galeria.php"><?php echo $txt[$lang]['menu']['galeria']; ?></a></li>
       <li><a href="contacto.php"><?php echo $txt[$lang]['menu']['contacto']; ?></a></li>
+      <li><a href="perfil.php"><?php echo $txt[$lang]['menu']['perfil']; ?></a></li>
     </ul>
   </li>
 </ul>
@@ -328,12 +337,16 @@ footer {
 
 <main>
 <h2><?php echo $txt[$lang]['registro_titulo']; ?></h2>
+
 <form action="registro_submit.php" method="POST">
     <label for="nombre"><?php echo $txt[$lang]['nombre']; ?></label>
     <input type="text" id="nombre" name="nombre" required>
 
     <label for="correo"><?php echo $txt[$lang]['correo']; ?></label>
     <input type="email" id="correo" name="correo" required>
+
+    <label><?= $txt[$lang]['contraseña'] ?></label>
+    <input type="password" name="password" required>    
 
     <label for="telefono"><?php echo $txt[$lang]['telefono']; ?></label>
     <input type="text" id="telefono" name="telefono">
@@ -363,7 +376,15 @@ footer {
     <textarea id="intereses" name="intereses"></textarea>
 
     <button type="submit"><?php echo $txt[$lang]['enviar']; ?></button>
+
+
 </form>
+  <label><?php echo $txt[$lang]['cuenta']; ?>
+
+    <a href="iniciar_sesion.php">
+       <button type="submit"><?php echo $txt[$lang]['iniciar']; ?></button>
+    </a>
+</label>
 </main>
 
 <footer>

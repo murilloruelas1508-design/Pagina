@@ -15,7 +15,7 @@ $txt = [
             'inicio' => 'Inicio','nosotros'=>'Nosotros','materiales'=>'Todo sobre tus Materiales ▾','cambiar_idioma'=>'Cambiar idioma',
             'plastico'=>'Plástico','papel'=>'Papel','vidrio'=>'Vidrio','metal'=>'Metal','carton'=>'Cartón','organico'=>'Orgánico',
             'actividades'=>'Actividades','manualidades'=>'Manualidades','conferencias'=>'Conferencias','registro'=>'Registro',
-            'mas'=>'Más ▾','galeria'=>'Galería','contacto'=>'Contacto'
+            'mas'=>'Más ▾','galeria'=>'Galería','contacto'=>'Contacto', 'perfil'=>'Perfil'
         ],
         'intro_titulo'=>'La Importancia del Reciclaje',
         'intro_reciclaje'=>'Reutilizar materiales ayuda a reducir la contaminación, aprovechar mejor los recursos y disminuir los residuos que dañan el entorno. Con pequeñas acciones podemos generar un impacto positivo en el planeta.',
@@ -37,7 +37,7 @@ $txt = [
             'inicio'=>'Home','nosotros'=>'About Us','materiales'=>'All About Your Materials ▾','cambiar_idioma'=>'Change language',
             'plastico'=>'Plastic','papel'=>'Paper','vidrio'=>'Glass','metal'=>'Metal','carton'=>'Cardboard','organico'=>'Organic',
             'actividades'=>'Activities','manualidades'=>'Crafts','conferencias'=>'Conferences','registro'=>'Register',
-            'mas'=>'More ▾','galeria'=>'Gallery','contacto'=>'Contact'
+            'mas'=>'More ▾','galeria'=>'Gallery','contacto'=>'Contact', 'perfil'=>'Perfil'
         ],
         'intro_titulo'=>'The Importance of Recycling',
         'intro_reciclaje'=>'Recycling reduces pollution and waste while improving resource use. Small actions make a positive impact.',
@@ -357,6 +357,7 @@ footer {
     <ul class="submenu">
       <li><a href="galeria.php"><?php echo $txt[$lang]['menu']['galeria']; ?></a></li>
       <li><a href="contacto.php"><?php echo $txt[$lang]['menu']['contacto']; ?></a></li>
+      <li><a href="perfil.php"><?php echo $txt[$lang]['menu']['perfil']; ?></a></li>
     </ul>
   </li>
 </ul>
