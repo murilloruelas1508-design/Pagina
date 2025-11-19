@@ -105,6 +105,11 @@ header {
     overflow: hidden;
     box-shadow: 0 2px 10px rgba(0,0,0,0.5);
     animation: fadeIn 1.5s ease-in-out;
+
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
 }
 
 header::before {

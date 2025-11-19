@@ -93,10 +93,16 @@ header {
     background: url('FONDOCART.jpg') center/cover no-repeat;
     color: white;
     text-align: center;
+    display: flex;
     padding: 90px 10px;
     overflow: hidden;
     box-shadow: 0 2px 10px rgba(0,0,0,0.5);
-    animation: fadeIn 1.5s ease-in-out, bgMove 20s ease-in-out infinite alternate;
+    animation: fadeIn 1.5s ease-in-out;
+
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
 }
 
 header::before {
