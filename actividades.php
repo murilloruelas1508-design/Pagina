@@ -28,23 +28,34 @@ $txt = [
             'mas' => 'Más ▾',
             'galeria' => 'Galería',
             'contacto' => 'Contacto',
-            'perfil'=>'Perfil'
+            'perfil' => 'Perfil'
         ],
         'actividades_titulo' => 'Nuestras Actividades',
         'introduccion' => 'El proyecto organiza diversas actividades que promueven el cuidado del medio ambiente y la participación activa de los estudiantes.',
+
+        'participar' => 'Participar',
+        'seleccionar_horario' => 'Selecciona un horario:',
+        'unirme' => 'Unirme a la actividad',
+
         'limpieza_titulo' => 'Campañas de Limpieza',
         'limpieza_texto' => 'Realizamos jornadas de limpieza dentro y fuera del plantel, fomentando la responsabilidad ecológica y la separación adecuada de residuos.',
+
         'reciclaje_titulo' => 'Talleres de Reciclaje y Reutilización',
         'reciclaje_texto' => 'Enseñamos a crear objetos útiles a partir de materiales reciclados como botellas, papel, cartón y metal.',
+
         'reforestacion_titulo' => 'Reforestación',
         'reforestacion_texto' => 'Organizamos jornadas de plantación de árboles y cuidado de áreas verdes en la escuela y la comunidad.',
+
         'conferencias_titulo' => 'Conferencias y Charlas Ambientales',
         'conferencias_texto' => 'Invitamos a especialistas para hablar sobre sostenibilidad, cambio climático y hábitos ecológicos.',
+
         'eventos_titulo' => 'Eventos Especiales',
         'eventos_texto' => 'Participamos en ferias ecológicas, días ambientales y concursos de innovación verde.',
+
         'video_titulo' => 'Video de Actividades del Proyecto',
         'footer' => '© 2025 Proyecto Ecológico - CECyTE Hermosillo IV'
     ],
+
     'en' => [
         'titulo' => 'CECyTE ECO PROJECT',
         'subtitulo' => 'Hermosillo IV',
@@ -65,20 +76,31 @@ $txt = [
             'mas' => 'More ▾',
             'galeria' => 'Gallery',
             'contacto' => 'Contact',
-            'perfil'=>'Perfil'
+            'perfil' => 'Profile'
         ],
+
         'actividades_titulo' => 'Our Activities',
         'introduccion' => 'The project organizes various activities that promote environmental care and active student participation.',
+
+        'participar' => 'Join',
+        'seleccionar_horario' => 'Select a time:',
+        'unirme' => 'Join Activity',
+
         'limpieza_titulo' => 'Clean-up Campaigns',
         'limpieza_texto' => 'We conduct clean-up days inside and outside the campus, encouraging ecological responsibility and proper waste separation.',
+
         'reciclaje_titulo' => 'Recycling and Reuse Workshops',
         'reciclaje_texto' => 'We teach how to create useful objects from recycled materials such as bottles, paper, cardboard, and metal.',
+
         'reforestacion_titulo' => 'Reforestation',
         'reforestacion_texto' => 'We organize tree planting and green area maintenance days at school and in the community.',
+
         'conferencias_titulo' => 'Environmental Talks and Conferences',
         'conferencias_texto' => 'We invite specialists to talk about sustainability, climate change, and eco-friendly habits.',
+
         'eventos_titulo' => 'Special Events',
-        'eventos_texto' => 'We participate in eco fairs, environmental days, and green innovation contests.',
+        'eventos_texto' => 'We participate in eco fairs, environmental days and green innovation contests.',
+
         'video_titulo' => 'Project Activities Video',
         'footer' => '© 2025 Eco Project - CECyTE Hermosillo IV'
     ]
@@ -90,6 +112,7 @@ $txt = [
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title><?php echo $txt[$lang]['menu']['actividades']; ?></title>
+
 <style>
 /* ===================== RESET Y BASE ===================== */
 * {
@@ -102,6 +125,7 @@ body {
     background: #f5f5f5;
     color: #3e2723;
 }
+
 
 /* ===================== HEADER FIJO ===================== */
 header {
@@ -118,11 +142,13 @@ header {
     box-shadow: 0 2px 6px rgba(0,0,0,0.2);
 }
 
+
 /* Logo con animación */
 .logo img {
     height: 60px;
     animation: shine 4s linear infinite;
 }
+
 
 /* ===================== MENÚ ===================== */
 nav.menu {
@@ -151,6 +177,7 @@ nav.menu li a:hover {
     border-radius: 4px;
 }
 
+
 /* Submenú */
 nav.menu .submenu {
     display: none;
@@ -166,6 +193,7 @@ nav.menu li:hover .submenu {
 nav.menu .submenu li a {
     padding: 8px 12px;
 }
+
 
 /* ===================== CAMBIO DE IDIOMA ===================== */
 .language {
@@ -190,12 +218,14 @@ nav.menu .submenu li a {
     vertical-align: middle;
 }
 
+
 /* ===================== ANIMACIONES ===================== */
 @keyframes shine {
     0% { filter: brightness(1); }
     50% { filter: brightness(1.5); }
     100% { filter: brightness(1); }
 }
+
 
 /* ===================== MAIN ===================== */
 main {
@@ -246,6 +276,7 @@ button:hover {
     background-color: #A1887F;
 }
 
+
 /* ===================== FOOTER ===================== */
 footer {
     text-align: center;
@@ -254,6 +285,7 @@ footer {
     padding: 12px;
     margin-top: 30px;
 }
+
 
 /* ===================== RESPONSIVE ===================== */
 @media (max-width: 768px) {
@@ -274,51 +306,95 @@ footer {
     }
 }
 
+
 </style>
+
+
 <script>
-function participar() { alert("¡Perfecto, estás dentro!"); }
+function enviarParticipacion(e, act) {
+    e.preventDefault(); // Esto SÍ funciona porque el form sí dispara un submit
+
+    let logueado = <?php echo isset($_SESSION["usuario_id"]) ? 'true' : 'false'; ?>;
+
+    if (!logueado) {
+        alert("Debes iniciar sesión para participar.");
+        window.location.href = "Registro.php";
+        return;
+    }
+
+    const form = document.getElementById("form_" + act);
+    const datos = new FormData(form);
+
+    fetch("participar.php", {
+        method: "POST",
+        body: datos
+    })
+    .then(res => res.text())
+    .then(r => {
+        if (r === "ok") {
+            alert("Perfecto, estás dentro 🎉");
+        }
+        else if (r === "duplicado") {
+            alert("Ya estás registrado en esta actividad y horario.");
+        }
+        else if (r === "nologin") {
+            alert("Debes iniciar sesión para participar.");
+        }
+        else {
+            alert("Error: " + r);
+        }
+    });
+}
 </script>
+
+
+
+
 </head>
 <body>
 
 <header>
-    <div class="logo">
-        <a href="index.php"><img src="../ECOCYTE.png" alt="Logo"></a>
-    </div>
 
+    <div class="logo"><a href="../index.php">
+    <img src="../ECOCYTE.png" class="logo" alt="Logo CECYTE">
+    </a></div>
     <nav class="menu">
-        <ul>
-          <li><a href="index.php"><?php echo $txt[$lang]['menu']['inicio']; ?></a></li>
-          <li><a href="nosotros.php"><?php echo $txt[$lang]['menu']['nosotros']; ?></a></li>
-          <li>
-            <a href="#"><?php echo $txt[$lang]['menu']['materiales']; ?></a>
-            <ul class="submenu">
-              <li><a href="Materiales/plastico.php"><?php echo $txt[$lang]['menu']['plastico']; ?></a></li>
-              <li><a href="Materiales/papel.php"><?php echo $txt[$lang]['menu']['papel']; ?></a></li>
-              <li><a href="Materiales/vidrio.php"><?php echo $txt[$lang]['menu']['vidrio']; ?></a></li>
-              <li><a href="Materiales/metal.php"><?php echo $txt[$lang]['menu']['metal']; ?></a></li>
-              <li><a href="Materiales/carton.php"><?php echo $txt[$lang]['menu']['carton']; ?></a></li>
-              <li><a href="Materiales/organico.php"><?php echo $txt[$lang]['menu']['organico']; ?></a></li>
-            </ul>
-          </li>
-          <li><a href="actividades.php"><?php echo $txt[$lang]['menu']['actividades']; ?></a></li>
-          <li><a href="#"><?php echo $txt[$lang]['menu']['manualidades']; ?></a></li>
-          <li><a href="#"><?php echo $txt[$lang]['menu']['conferencias']; ?></a></li>
-          <li><a href="Registro.php"><?php echo $txt[$lang]['menu']['registro']; ?></a></li>
-          <li>
-            <a href="#"><?php echo $txt[$lang]['menu']['mas']; ?></a>
-            <ul class="submenu">
-              <li><a href="galeria.php"><?php echo $txt[$lang]['menu']['galeria']; ?></a></li>
-              <li><a href="contacto.php"><?php echo $txt[$lang]['menu']['contacto']; ?></a></li>
-              <li><a href="perfil.php"><?php echo $txt[$lang]['menu']['perfil']; ?></a></li>
-            </ul>
-          </li>
-        </ul>
-    </nav>
+        
+<ul>
+  <li><a href="index.php"><?php echo $txt[$lang]['menu']['inicio']; ?></a></li>
+  <li><a href="nosotros.php"><?php echo $txt[$lang]['menu']['nosotros']; ?></a></li>
 
-<div class="language">
+  <li>
+    <a href="#"><?php echo $txt[$lang]['menu']['materiales']; ?></a>
+    <ul class="submenu">
+      <li><a href="Materiales/plastico.php"><?php echo $txt[$lang]['menu']['plastico']; ?></a></li>
+      <li><a href="Materiales/papel.php"><?php echo $txt[$lang]['menu']['papel']; ?></a></li>
+      <li><a href="Materiales/vidrio.php"><?php echo $txt[$lang]['menu']['vidrio']; ?></a></li>
+      <li><a href="Materiales/metal.php"><?php echo $txt[$lang]['menu']['metal']; ?></a></li>
+      <li><a href="Materiales/carton.php"><?php echo $txt[$lang]['menu']['carton']; ?></a></li>
+      <li><a href="Materiales/organico.php"><?php echo $txt[$lang]['menu']['organico']; ?></a></li>
+    </ul>
+  </li>
+
+  <li><a href="actividades.php"><?php echo $txt[$lang]['menu']['actividades']; ?></a></li>
+  <li><a href="#"><?php echo $txt[$lang]['menu']['manualidades']; ?></a></li>
+  <li><a href="#"><?php echo $txt[$lang]['menu']['conferencias']; ?></a></li>
+  <li><a href="Registro.php"><?php echo $txt[$lang]['menu']['registro']; ?></a></li>
+
+  <li>
+    <a href="#"><?php echo $txt[$lang]['menu']['mas']; ?></a>
+    <ul class="submenu">
+      <li><a href="galeria.php"><?php echo $txt[$lang]['menu']['galeria']; ?></a></li>
+      <li><a href="contacto.php"><?php echo $txt[$lang]['menu']['contacto']; ?></a></li>
+      <li><a href="perfil.php"><?php echo $txt[$lang]['menu']['perfil']; ?></a></li>
+    </ul>
+  </li>
+</ul>
+
+    </nav>
+   <div class="language">
     <span>Cambiar idioma:</span>
-    <div class="flags">
+    <div>
         <a href="?lang=es"><img src="mexicob.png" class="flag" alt="Español"></a>
         <a href="?lang=en"><img src="USAb.png" class="flag" alt="English"></a>
     </div>
@@ -326,31 +402,74 @@ function participar() { alert("¡Perfecto, estás dentro!"); }
 
 </header>
 
+
 <main>
+
 <h2><?php echo $txt[$lang]['actividades_titulo']; ?></h2>
 <p><?php echo $txt[$lang]['introduccion']; ?></p>
 
 <?php
-$actividades = ['limpieza','reciclaje','reforestacion','conferencias','eventos'];
-foreach($actividades as $act):
+$actividades = [
+    'limpieza',
+    'reciclaje',
+    'reforestacion',
+    'conferencias',
+    'eventos'
+];
 ?>
+
+<?php foreach ($actividades as $act): ?>
+
 <div class="actividad">
+
     <h3><?php echo $txt[$lang][$act.'_titulo']; ?></h3>
     <p><?php echo $txt[$lang][$act.'_texto']; ?></p>
+
     <img src="<?php echo $act; ?>.jpg" alt="<?php echo $txt[$lang][$act.'_titulo']; ?>">
-    <button class="btn-participar" onclick="participar()">Participar</button>
+
+    <!-- BOTÓN PRINCIPAL -->
+    <button onclick="document.getElementById('form_<?php echo $act; ?>').dispatchEvent(new Event('submit'));">
+
+        <?php echo $txt[$lang]['participar']; ?>
+    </button>
+
+    <!-- FORMULARIO OCULTO QUE SE ENVÍA AUTOMÁTICAMENTE -->
+     <form id="form_<?php echo $act; ?>" onsubmit="enviarParticipacion(event, '<?php echo $act; ?>')">
+
+        <input type="hidden" name="actividad" value="<?php echo $act; ?>">
+
+        <select name="horario" required>
+            <option value=""><?php echo $txt[$lang]['seleccionar_horario']; ?></option>
+
+            <?php
+            $horarios = [
+                'limpieza' => ["7:00 AM", "9:00 AM", "11:00 AM"],
+                'reciclaje' => ["8:00 AM", "10:00 AM", "1:00 PM"],
+                'reforestacion' => ["6:30 AM", "9:30 AM", "4:00 PM"],
+                'conferencias' => ["12:00 PM", "2:00 PM", "5:00 PM"],
+                'eventos' => ["9:00 AM", "3:00 PM", "7:00 PM"]
+            ];
+
+            foreach ($horarios[$act] as $hora) {
+                echo "<option value='$hora'>$hora</option>";
+            }
+            ?>
+        </select>
+    </form>
+
 </div>
+
 <?php endforeach; ?>
 
 <h3><?php echo $txt[$lang]['video_titulo']; ?></h3>
 <video width="700" height="400" controls>
     <source src="actividades.mp4" type="video/mp4">
-    Your browser does not support the video tag.
 </video>
+
 </main>
 
 <footer>
-<p><?php echo $txt[$lang]['footer']; ?></p>
+    <p><?php echo $txt[$lang]['footer']; ?></p>
 </footer>
 
 </body>

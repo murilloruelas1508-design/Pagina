@@ -91,11 +91,23 @@ if (!isset($_SESSION['usuario_id'])) {
 $conn = new mysqli("localhost", "root", "", "ECOCYTE");
 if ($conn->connect_error) die("Error BD: " . $conn->connect_error);
 
-$id = $_SESSION['usuario_id'];
-$stmt = $conn->prepare("SELECT * FROM usuarios WHERE id=?");
-$stmt->bind_param("i", $id);
+$codigo_usuario = $_SESSION['usuario_id'];
+
+// Usuario
+$stmt = $conn->prepare("SELECT * FROM usuarios WHERE codigo_usuario=?");
+$stmt->bind_param("i", $codigo_usuario);
 $stmt->execute();
 $usuario = $stmt->get_result()->fetch_assoc();
+if (!$usuario) die("Usuario no encontrado.");
+
+// Actividades
+$stmt2 = $conn->prepare("SELECT actividad, horario, fecha_registro FROM actividades WHERE codigo_usuario=?");
+$stmt2->bind_param("i", $codigo_usuario);
+$stmt2->execute();
+$result2 = $stmt2->get_result();
+$actividades = $result2->fetch_all(MYSQLI_ASSOC);
+
+
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $lang; ?>">
@@ -350,6 +362,22 @@ footer {
 <p><strong><?php echo $txt[$lang]['participacion']; ?>:</strong> <?= $usuario['participacion']; ?></p>
 <p><strong><?php echo $txt[$lang]['motivo']; ?>:</strong> <?= $usuario['motivo']; ?></p>
 <p><strong><?php echo $txt[$lang]['intereses']; ?>:</strong> <?= $usuario['intereses']; ?></p>
+
+<h2><?php echo ($lang=='es' ? 'Mis Actividades' : 'My Activities'); ?></h2>
+
+<?php if(count($actividades) > 0): ?>
+    <ul>
+        <?php foreach($actividades as $act): ?>
+            <li>
+                <?= htmlspecialchars($act['actividad']) ?> - <?= htmlspecialchars($act['horario']) ?> 
+                (<?= $act['fecha_registro'] ?>)
+            </li>
+        <?php endforeach; ?>
+    </ul>
+<?php else: ?>
+    <p><?= ($lang=='es' ? 'No te has registrado en ninguna actividad todavía.' : 'You have not registered for any activities yet.') ?></p>
+<?php endif; ?>
+
 
 <br>
 <a href="cerrar_sesion.php" class="btn logout"><?php echo $txt[$lang]['cerrar']; ?></a>
