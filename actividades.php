@@ -7,6 +7,8 @@ if (isset($_GET['lang'])) {
 
 $lang = $_SESSION['lang'] ?? 'es';
 
+$tipo_usuario = $_SESSION['usuario_tipo'] ?? 'alumno'; 
+
 $txt = [
     'es' => [
         'titulo' => 'PROYECTO ECOLÓGICO CECyTE',
@@ -52,8 +54,12 @@ $txt = [
         'eventos_titulo' => 'Eventos Especiales',
         'eventos_texto' => 'Participamos en ferias ecológicas, días ambientales y concursos de innovación verde.',
 
+        
+        'solicitar_encargado' => 'Solicitar ser encargado',
+
+
         'video_titulo' => 'Video de Actividades del Proyecto',
-        'footer' => '© 2025 Proyecto Ecológico - CECyTE Hermosillo IV'
+        'footer'=>'© 2025 ECOCYTE – Proyecto ecológico'
     ],
 
     'en' => [
@@ -101,8 +107,13 @@ $txt = [
         'eventos_titulo' => 'Special Events',
         'eventos_texto' => 'We participate in eco fairs, environmental days and green innovation contests.',
 
+        'solicitar_encargado' => 'Request to be coordinator',
+
+
+        
+
         'video_titulo' => 'Project Activities Video',
-        'footer' => '© 2025 Eco Project - CECyTE Hermosillo IV'
+        'footer'=>'© 2025 ECOCYTE – Ecology Project'
     ]
 ];
 ?>
@@ -311,13 +322,15 @@ footer {
 
 
 <script>
+const LANG = "<?php echo $lang; ?>";
+
 function enviarParticipacion(e, act) {
-    e.preventDefault(); // Esto SÍ funciona porque el form sí dispara un submit
+    e.preventDefault();
 
     let logueado = <?php echo isset($_SESSION["usuario_id"]) ? 'true' : 'false'; ?>;
 
     if (!logueado) {
-        alert("Debes iniciar sesión para participar.");
+        alert(LANG === "en" ? "You must log in to participate." : "Debes iniciar sesión para participar.");
         window.location.href = "Registro.php";
         return;
     }
@@ -332,13 +345,13 @@ function enviarParticipacion(e, act) {
     .then(res => res.text())
     .then(r => {
         if (r === "ok") {
-            alert("Perfecto, estás dentro 🎉");
+            alert(LANG === "en" ? "Great, you're in! 🎉" : "Perfecto, estás dentro 🎉");
         }
         else if (r === "duplicado") {
-            alert("Ya estás registrado en esta actividad y horario.");
+            alert(LANG === "en" ? "You are already registered in this activity and schedule." : "Ya estás registrado en esta actividad y horario.");
         }
         else if (r === "nologin") {
-            alert("Debes iniciar sesión para participar.");
+            alert(LANG === "en" ? "You must log in to participate." : "Debes iniciar sesión para participar.");
         }
         else {
             alert("Error: " + r);
@@ -346,6 +359,7 @@ function enviarParticipacion(e, act) {
     });
 }
 </script>
+
 
 
 
@@ -377,16 +391,15 @@ function enviarParticipacion(e, act) {
   </li>
 
   <li><a href="actividades.php"><?php echo $txt[$lang]['menu']['actividades']; ?></a></li>
-  <li><a href="#"><?php echo $txt[$lang]['menu']['manualidades']; ?></a></li>
-  <li><a href="#"><?php echo $txt[$lang]['menu']['conferencias']; ?></a></li>
   <li><a href="Registro.php"><?php echo $txt[$lang]['menu']['registro']; ?></a></li>
 
   <li>
     <a href="#"><?php echo $txt[$lang]['menu']['mas']; ?></a>
     <ul class="submenu">
+      <li><a href="perfil.php"><?php echo $txt[$lang]['menu']['perfil']; ?></a></li>
       <li><a href="galeria.php"><?php echo $txt[$lang]['menu']['galeria']; ?></a></li>
       <li><a href="contacto.php"><?php echo $txt[$lang]['menu']['contacto']; ?></a></li>
-      <li><a href="perfil.php"><?php echo $txt[$lang]['menu']['perfil']; ?></a></li>
+      
     </ul>
   </li>
 </ul>
@@ -416,6 +429,16 @@ $actividades = [
     'conferencias',
     'eventos'
 ];
+
+$nombre_formal = [
+    'limpieza' => 'Campañas de Limpieza',
+    'reciclaje' => 'Talleres de Reciclaje y Reutilización',
+    'reforestacion' => 'Reforestación',
+    'conferencias' => 'Conferencias y Charlas Ambientales',
+    'eventos' => 'Eventos Especiales'
+];
+
+
 ?>
 
 <?php foreach ($actividades as $act): ?>
@@ -433,12 +456,32 @@ $actividades = [
         <?php echo $txt[$lang]['participar']; ?>
     </button>
 
+    
+
+    <!-- BOTÓN SOLICITAR ENCARGADO -->
+<?php
+$tipo_usuario = strtolower($_SESSION['usuario_tipo'] ?? 'alumno');
+if (in_array($tipo_usuario, ['docente','directivo','administrativo'])):
+?>
+<form action="solicitar_encargado.php" method="POST">
+    <input type="hidden" name="actividad" value="<?php echo $act; ?>">
+    <button type="submit">
+        <?php echo $txt[$lang]['solicitar_encargado']; ?>
+    </button>
+</form>
+<?php endif; ?>
+
+
+
+
+
+
     <!-- FORMULARIO OCULTO QUE SE ENVÍA AUTOMÁTICAMENTE -->
      <form id="form_<?php echo $act; ?>" onsubmit="enviarParticipacion(event, '<?php echo $act; ?>')">
+     <input type="hidden" name="actividad" value="<?php echo $act; ?>">
 
-        <input type="hidden" name="actividad" value="<?php echo $act; ?>">
+    <select name="horario" required>
 
-        <select name="horario" required>
             <option value=""><?php echo $txt[$lang]['seleccionar_horario']; ?></option>
 
             <?php

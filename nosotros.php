@@ -315,16 +315,15 @@ footer {
   </li>
 
   <li><a href="actividades.php"><?php echo $txt[$lang]['menu']['actividades']; ?></a></li>
-  <li><a href="#"><?php echo $txt[$lang]['menu']['manualidades']; ?></a></li>
-  <li><a href="#"><?php echo $txt[$lang]['menu']['conferencias']; ?></a></li>
   <li><a href="Registro.php"><?php echo $txt[$lang]['menu']['registro']; ?></a></li>
 
   <li>
     <a href="#"><?php echo $txt[$lang]['menu']['mas']; ?></a>
     <ul class="submenu">
+      <li><a href="perfil.php"><?php echo $txt[$lang]['menu']['perfil']; ?></a></li>
       <li><a href="galeria.php"><?php echo $txt[$lang]['menu']['galeria']; ?></a></li>
       <li><a href="contacto.php"><?php echo $txt[$lang]['menu']['contacto']; ?></a></li>
-      <li><a href="perfil.php"><?php echo $txt[$lang]['menu']['perfil']; ?></a></li>
+      
     </ul>
   </li>
 </ul>

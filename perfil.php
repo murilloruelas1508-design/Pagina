@@ -7,7 +7,6 @@ if (isset($_GET['lang'])) {
 
 $lang = $_SESSION['lang'] ?? 'es';
 
-
 // ========================= TEXTOS =========================
 $txt = [
     'es' => [
@@ -23,8 +22,11 @@ $txt = [
         'intereses' => 'Áreas de interés',
         'editar' => 'Editar perfil',
         'cerrar' => 'Cerrar sesión',
-
-        // menú
+        'actividades_mias' => 'Mis Actividades',
+        'actividades_encargo' => 'Actividades que encargo',
+        'alumno' => 'Alumno',
+        'coordinador' => 'Encargado',
+        'footer'=>'© 2025 ECOCYTE – Proyecto ecológico',
         'menu' => [
             'inicio' => 'Inicio',
             'nosotros' => 'Nosotros',
@@ -43,8 +45,8 @@ $txt = [
             'galeria' => 'Galería',
             'contacto' => 'Contacto'
         ]
+        
     ],
-
     'en' => [
         'titulo' => 'User Profile',
         'bienvenido' => 'Welcome',
@@ -58,8 +60,11 @@ $txt = [
         'intereses' => 'Areas of Interest',
         'editar' => 'Edit Profile',
         'cerrar' => 'Log Out',
-
-        // menú
+        'actividades_mias' => 'My Activities',
+        'actividades_encargo' => 'Activities I Coordinate',
+        'alumno' => 'Student',
+        'coordinador' => 'Coordinator',
+        'footer'=>'© 2025 ECOCYTE – Ecology Project',
         'menu' => [
             'inicio' => 'Home',
             'nosotros' => 'About Us',
@@ -100,15 +105,45 @@ $stmt->execute();
 $usuario = $stmt->get_result()->fetch_assoc();
 if (!$usuario) die("Usuario no encontrado.");
 
-// Actividades
-$stmt2 = $conn->prepare("SELECT actividad, horario, fecha_registro FROM actividades WHERE codigo_usuario=?");
+$tipo_usuario = $usuario['tipo'];
+
+// Actividades en las que participa (como alumno)
+$stmt2 = $conn->prepare("
+    SELECT a.actividad, a.horario, a.fecha_registro, u.nombre AS nombre_encargado
+    FROM actividades a
+    LEFT JOIN usuarios u ON a.codigo_encargado = u.codigo_usuario
+    WHERE a.codigo_usuario=?
+");
 $stmt2->bind_param("i", $codigo_usuario);
 $stmt2->execute();
-$result2 = $stmt2->get_result();
-$actividades = $result2->fetch_all(MYSQLI_ASSOC);
+$actividades = $stmt2->get_result()->fetch_all(MYSQLI_ASSOC);
+$stmt2->close();
+
+// Actividades como encargado (solo para docentes, directivos o administrativos)
+// Actividades aprobadas como encargado
+$actividades_encargado = [];
+if (in_array($tipo_usuario, ['docente', 'directivo', 'administrativo'])) {
+
+$stmt3 = $conn->prepare("
+    SELECT id, actividad, fecha_registro
+    FROM actividades_encargado
+    WHERE codigo_encargado=?
+    ORDER BY fecha_registro DESC
+");
+
+
+$stmt3->bind_param("i", $codigo_usuario);
+$stmt3->execute();
+$actividades_encargado = $stmt3->get_result()->fetch_all(MYSQLI_ASSOC);
+$stmt3->close();
+
+}
+
 
 
 ?>
+
+
 <!DOCTYPE html>
 <html lang="<?php echo $lang; ?>">
 <head>
@@ -327,8 +362,6 @@ footer {
             </li>
 
             <li><a href="actividades.php"><?php echo $txt[$lang]['menu']['actividades']; ?></a></li>
-            <li><a href="#"><?php echo $txt[$lang]['menu']['manualidades']; ?></a></li>
-            <li><a href="#"><?php echo $txt[$lang]['menu']['conferencias']; ?></a></li>
             <li><a href="Registro.php"><?php echo $txt[$lang]['menu']['registro']; ?></a></li>
 
             <li>
@@ -363,20 +396,56 @@ footer {
 <p><strong><?php echo $txt[$lang]['motivo']; ?>:</strong> <?= $usuario['motivo']; ?></p>
 <p><strong><?php echo $txt[$lang]['intereses']; ?>:</strong> <?= $usuario['intereses']; ?></p>
 
-<h2><?php echo ($lang=='es' ? 'Mis Actividades' : 'My Activities'); ?></h2>
+<h2><?= $txt[$lang]['actividades_mias']; ?></h2>
 
-<?php if(count($actividades) > 0): ?>
+<?php if (count($actividades) > 0): ?>
     <ul>
-        <?php foreach($actividades as $act): ?>
+        <?php foreach ($actividades as $act): ?>
             <li>
-                <?= htmlspecialchars($act['actividad']) ?> - <?= htmlspecialchars($act['horario']) ?> 
+                <?= htmlspecialchars($act['actividad']) ?>
+                - <?= htmlspecialchars($act['horario']) ?>
                 (<?= $act['fecha_registro'] ?>)
+
+                <?php if (!empty($act['nombre_encargado'])): ?>
+                    - <?= ($lang == 'es' ? 'Encargado: ' : 'Coordinator: ') ?>
+                      <?= htmlspecialchars($act['nombre_encargado']) ?>
+                <?php endif; ?>
             </li>
         <?php endforeach; ?>
     </ul>
 <?php else: ?>
-    <p><?= ($lang=='es' ? 'No te has registrado en ninguna actividad todavía.' : 'You have not registered for any activities yet.') ?></p>
+    <p>
+        <?= ($lang == 'es'
+            ? 'No te has registrado en ninguna actividad todavía.'
+            : 'You have not registered for any activities yet.') ?>
+    </p>
 <?php endif; ?>
+
+
+<?php if (count($actividades_encargado) > 0): ?>
+    <h2><?= ($lang == 'es' ? 'Actividades a cargo' : 'Activities You Coordinate') ?></h2>
+
+    <ul>
+        <?php foreach ($actividades_encargado as $act): ?>
+            <li>
+                <?= htmlspecialchars($act['actividad']) ?>
+                (<?= $act['fecha_registro'] ?>)
+
+                <a href="inscritos.php?id=<?= $act['id'] ?>"
+                   style="margin-left:10px; font-size:0.9em;">
+                    <?= ($lang == 'es' ? 'Ver inscritos' : 'View Participants') ?>
+                </a>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+<?php endif; ?>
+
+
+
+
+
+
+
 
 
 <br>
@@ -385,7 +454,7 @@ footer {
 </main>
 
 <footer>
-<p>© 2025 Club de Ecología - CECyTE Hermosillo IV</p>
+<?php echo $txt[$lang]['footer']; ?>
 </footer>
 
 </body>

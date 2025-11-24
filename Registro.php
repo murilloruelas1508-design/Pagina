@@ -48,7 +48,8 @@ $txt = [
         'intereses' => 'Áreas de interés ecológico',
         'enviar' => 'Enviar Registro',
         'cuenta' => '¿Ya tienes cuenta?',
-        'iniciar' => 'Iniciar sesion'
+        'iniciar' => 'Iniciar sesion',
+        'footer'=>'© 2025 ECOCYTE – Proyecto ecológico'
     ],
     'en' => [
         'titulo' => 'ECOLOGY CLUB',
@@ -90,7 +91,8 @@ $txt = [
         'intereses' => 'Ecological areas of interest',
         'enviar' => 'Submit Registration',
         'cuenta' => 'Do you already have an account?',
-        'iniciar' => 'Login'
+        'iniciar' => 'Login',
+        'footer'=>'© 2025 ECOCYTE – Ecology Project'
     ]
 ];
 ?>
@@ -311,16 +313,15 @@ footer {
   </li>
 
   <li><a href="actividades.php"><?php echo $txt[$lang]['menu']['actividades']; ?></a></li>
-  <li><a href="#"><?php echo $txt[$lang]['menu']['manualidades']; ?></a></li>
-  <li><a href="#"><?php echo $txt[$lang]['menu']['conferencias']; ?></a></li>
   <li><a href="Registro.php"><?php echo $txt[$lang]['menu']['registro']; ?></a></li>
 
   <li>
     <a href="#"><?php echo $txt[$lang]['menu']['mas']; ?></a>
     <ul class="submenu">
+      <li><a href="perfil.php"><?php echo $txt[$lang]['menu']['perfil']; ?></a></li>
       <li><a href="galeria.php"><?php echo $txt[$lang]['menu']['galeria']; ?></a></li>
       <li><a href="contacto.php"><?php echo $txt[$lang]['menu']['contacto']; ?></a></li>
-      <li><a href="perfil.php"><?php echo $txt[$lang]['menu']['perfil']; ?></a></li>
+      
     </ul>
   </li>
 </ul>
@@ -388,7 +389,7 @@ footer {
 </main>
 
 <footer>
-<p>© 2025 Club de Ecología - CECyTE Hermosillo IV</p>
+<?php echo $txt[$lang]['footer']; ?>
 </footer>
 
 </body>

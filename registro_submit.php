@@ -39,6 +39,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if ($stmt->execute()) {
         $_SESSION["usuario_id"] = $stmt->insert_id;
         $_SESSION["usuario_nombre"] = $nombre;
+        $_SESSION["usuario_correo"] = $correo; // agregar
+        $_SESSION["usuario_plantel"] = $plantel; // agregar
+        $_SESSION["usuario_tipo"] = $tipo; // <-- esto es lo que falta
+
+        
         header("Location: perfil.php");
         exit;
     } else {
